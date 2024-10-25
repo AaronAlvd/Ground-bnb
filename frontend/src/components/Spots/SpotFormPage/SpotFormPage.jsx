@@ -34,13 +34,6 @@ function SpotFormPage () {
       name: name === "",
     })
 
-    if ( lat === "") {
-      lat = 90.00
-    }
-    if ( lng === "") {
-      lng = 90.00
-    }
-
     return dispatch(
       spotActions.createSpot({
         address,
