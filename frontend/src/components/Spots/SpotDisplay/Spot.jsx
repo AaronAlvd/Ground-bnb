@@ -1,4 +1,4 @@
-import * as spotActions from "../../../store/spots"; // Import your actions
+import * as spotActions from "../../../store/spots"; 
 import * as bookingActions from '../../../store/booking';
 import * as reviewActions from '../../../store/review';
 import { useDispatch, useSelector } from "react-redux";
