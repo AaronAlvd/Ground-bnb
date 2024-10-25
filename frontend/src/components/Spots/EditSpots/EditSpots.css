@@ -1,0 +1,13 @@
+.div-spotEditForm {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+
+.div-ESFI {
+  padding: 20px;
+}
+
+.ESFI-textarea {
+  resize: none;
+}

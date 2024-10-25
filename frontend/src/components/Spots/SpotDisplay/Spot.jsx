@@ -7,7 +7,8 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
-import ReviewForm from '../../Reviews/ReviewForm/ReviewForm'
+import ReviewForm from '../../Reviews/ReviewForm/ReviewForm';
+import EditSpots from "../EditSpots/EditSpots";
 import "./Spot.css";
 
 function Spot() {
@@ -152,7 +153,7 @@ function Spot() {
                   <OpenModalButton buttonText="Make Review" modalComponent={<ReviewForm props={spot}/>}/>
                 </button>}
                 {owner && <button className="SD-Button">
-                  <OpenModalButton buttonText="Edit"/>
+                  <OpenModalButton buttonText="Edit" modalComponent={<EditSpots spotId={spotId}/>}/>
                 </button>}
               </div>
             </div>

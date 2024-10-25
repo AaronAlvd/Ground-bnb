@@ -17,7 +17,8 @@ function SpotFormPage () {
     lat: "",
     lng: "",
     description: "",
-    price: ""
+    price: "",
+    url: "",
   })
 
   const handleSubmit = (e) => {
@@ -46,17 +47,15 @@ function SpotFormPage () {
         description,
         price
     }))
-    .then(() => {
+    .then((response) => {
       if (!errors.address || !errors.state || !errors.city || !errors.price || !errors.description || !errors.name) {
+        dispatch(spotActions.addSpotImage(response.id, formData.url));
         navigate('/');
       }
-      console.log(formData)
     }) 
     .catch(async (res) => {
       const data = await res.json();
-      if (data && data.errors) {
-        setErrors(data.errors);
-      }
+      console.log(data)
     });
   }
 
@@ -101,12 +100,12 @@ function SpotFormPage () {
           </div>
 
           <div className="div-inputSpotForm03" >
-            <div className="">
+            <div className="div-SFIL03">
               <label className="SFIL-02">lat</label> 
               <input type="text" name="lat" className="formInput formInput03" value={formData.lat} onChange={(e) => handleChange(e)}/>
             </div>
             <h2 className="SFI-h2">,</h2>
-            <div className="">
+            <div className="div-SFIL03">
               <label className="SFIL-02">lng</label>
               <input type="text" name="lng" className="formInput formInput03" value={formData.lng} onChange={(e) => handleChange(e)}/>
             </div>
@@ -125,6 +124,11 @@ function SpotFormPage () {
           <div className="div-inputSpotForm">
             <label className="spotForm-inputLabel">Price</label> {errors.price && <p className='SFL-priceError'>Price is required</p>}
             <input type="text" name="price" className="formInput formInput01" value={formData.price} onChange={(e) => handleChange(e)}></input>
+          </div>
+
+          <div className="div-inputSpotForm">
+            <label className="spotForm-inputLabel">Image URL</label> {errors.image && <p className='SFL-imageError'>Image is required</p>}
+            <input type="text" name="url" className="formInput formInput01" value={formData.url} onChange={(e) => handleChange(e)}></input>
           </div>
 
           <div className="div-inputSpotForm div-ISF-button">

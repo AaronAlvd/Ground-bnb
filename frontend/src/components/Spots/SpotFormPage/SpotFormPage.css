@@ -20,6 +20,10 @@
   justify-content: center;
 }
 
+.div-SFIL03 {
+  width: min-content;
+}
+
 .div-inputSpotForm03 {
   display: flex;
   align-items: flex-end;
@@ -39,7 +43,7 @@
 
 .spotForm-inputLabel {
   position: absolute;
-  transform: translate(0, -25px);
+  transform: translate(0, -27px);
 }
 
 .SFIL-02 {

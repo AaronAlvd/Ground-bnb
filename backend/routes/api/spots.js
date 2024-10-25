@@ -601,18 +601,6 @@ router.post('/', requireAuth, async (req, res, next) => {
   }
 });
 
-// if (error.name === 'SequelizeValidationError') {
-//   const validationErrors = error.errors.reduce((acc, err) => {
-//     acc[err.path] = err.message;
-//     return acc;
-//   }, {});
-
-//   return res.status(400).json({
-//     message: "Validation error",
-//     errors: validationErrors
-//   });
-// }
-
 router.put('/:spotId', requireAuth, async (req, res, next) => {
   // Custom date formatting function
   const formatDate = (date) => {

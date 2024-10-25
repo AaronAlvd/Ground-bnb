@@ -60,6 +60,34 @@ export const getSpots = () => {
   };
 };
 
+export const addSpotImage = (data) => async () => {
+  try {
+    const { url, spotId } = data;
+
+    const response = await csrfFetch(`/api/spots/${spotId}/images`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        url: url,
+        preview: false
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to add Image.");
+    }
+
+    const newData = await response.json();
+
+    return newData;
+  } catch (error) {
+    console.error("Error adding Image:", err);
+    return err;
+  }
+}
+
 export const createSpot = (data) => async (dispatch) => {
   try {
     const { address, lng, lat, city, state, country, description, price, name } = data;
