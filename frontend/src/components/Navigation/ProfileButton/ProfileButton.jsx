@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../../SignUp/SignUpForm';
@@ -9,6 +9,7 @@ import * as sessionActions from '../../../store/session';
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -48,6 +49,9 @@ function ProfileButton({ user }) {
           <li className={showMenu ? "ModalButton-list" : null}><p className="userInfo">{liveUser.email}</p></li>
           <li className={showMenu ? "ModalButton-list pbl-bottom" : null}>
             <button onClick={logout} className="pb-logout userInfo">Log Out</button>
+          </li>
+          <li className={showMenu ? "ModalButton-list pbl-bottom" : null} onClick={() => navigate('/spots/current')}>
+            <button className="pb-logout userInfo">Manage Spots</button>
           </li>
         </ul>
       )
