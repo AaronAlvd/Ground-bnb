@@ -44,32 +44,32 @@ function SignupFormModal() {
   });
   const { closeModal } = useModal();
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
-
   useEffect(() => {
-   let testFailed = false;
+    let testFailed = false;
 
     if (formData.username.length < 4 || formData.username === "") {
       testFailed = true;
     }
-    if (formData.password.length < 6 || formData.password === "") {
+    else if (formData.password.length < 6 || formData.password === "") {
       testFailed = true;
     }
-    if (formData.confirmPassword === "") {
+    else if (formData.confirmPassword === "") {
       testFailed = true;
     }
-    if (formData.email === "") {
+    else if (formData.email === "") {
       testFailed = true;
     }
-    if (formData.firstName === "") {
+    else if (formData.firstName === "") {
       testFailed = true;
     }
-    if (formData.lastName === "") {
+    else if (formData.lastName === "") {
       testFailed = true;
     }
 
     setDisableSignup(testFailed);
-  }, [formData])
+  }, [formData]);
+
+  if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = (e) => {
     e.preventDefault();

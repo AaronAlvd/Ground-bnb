@@ -49,7 +49,7 @@ function Spot() {
     };
   
     fetchSpots();
-  }, [dispatch, spotId]);  // Dependencies: re-run on `spotId` or `dispatch` change
+  }, [dispatch, spotId, user]);  // Dependencies: re-run on `spotId` or `dispatch` change
 
   useEffect(() => {
      bookings.forEach((booking) => {
@@ -58,13 +58,13 @@ function Spot() {
       }
      });
 
-  }, [showReview]);
+  }, [showReview, bookings, spotId]);
 
   useEffect(() => {
     if (user && spot && (spot.ownerId === user.id)) {
       setOwner(true);
     }
-  },[owner]);
+  },[owner, spot, user]);
 
   const showReviews = () => {
     if (!reviews) {
@@ -80,7 +80,7 @@ function Spot() {
           });
 
           return (
-            <div className="div-spotReview">
+            <div className="div-spotReview" key={review.id}>
               <div className="div-reviewTop">
                 <h3 className="reviewTop">{review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">{review.stars}<FontAwesomeIcon className="SD-icon"icon={faStar}/></h3>
               </div>

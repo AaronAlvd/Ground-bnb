@@ -1,23 +1,23 @@
 import './EditSpots.css';
 import * as spotActions from "../../../store/spots"; 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function EditSpots({ spotId }) {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots.spots);
   const spot = spots.find((data) => data.id === Number(spotId));
-  const [formData, setFormData] = useState({
-    address: "",
-    city: "",
-    state: "",
-    country: "",
-    name: "",
-    lat: "",
-    lng: "",
-    description: "",
-    price: "",
-  })
+  // const [formData, setFormData] = useState({
+  //   address: "",
+  //   city: "",
+  //   state: "",
+  //   country: "",
+  //   name: "",
+  //   lat: "",
+  //   lng: "",
+  //   description: "",
+  //   price: "",
+  // });
 
   useEffect(() => {
     const fetchSpots = async() => {
@@ -26,9 +26,9 @@ function EditSpots({ spotId }) {
     fetchSpots();
   }, [dispatch]);
 
-  const handleSubmit = () => {
+  // const handleSubmit = () => {
     
-  };
+  // };
 
   return (
       <div className='div-spotEditForm'>

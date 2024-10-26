@@ -3,15 +3,14 @@ import StarRating from "../StarRating";
 import { useState } from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { createReview } from "../../../store/review";
-import { useModal } from '../../../context/modal';
+// import { useModal } from '../../../context/modal';
 
 export default function ReviewForm({props}) {
   const user = useSelector((state) => state.session.user);
 
   const [review, setReview] = useState("");
   const dispatch = useDispatch();
-//   const { closeModal } = useModal();
-// console.log(props.id)
+  // const { closeModal } = useModal();
 
   const handleSubmit = (e) => {
     e.preventDefault();

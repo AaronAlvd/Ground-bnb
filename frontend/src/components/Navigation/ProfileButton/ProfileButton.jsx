@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../../SignUp/SignUpForm';
@@ -8,7 +8,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import * as sessionActions from '../../../store/session';
 import './ProfileButton.css'
 
-function ProfileButton({ user }) {
+function ProfileButton() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);

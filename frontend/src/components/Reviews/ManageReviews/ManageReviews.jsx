@@ -1,7 +1,7 @@
 import './ManageReviews.css';
 import * as reviewActions from '../../../store/review';
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -37,7 +37,7 @@ function ManageReviews() {
           });
 
           return (
-            <div className="div-spotReview">
+            <div className="div-spotReview" key={review.id}>
               <div className="div-reviewTop">
                 <h3 className="reviewTop">{review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">{review.stars}<FontAwesomeIcon className="SD-icon"icon={faStar}/></h3>
               </div>

@@ -82,7 +82,7 @@ export const addSpotImage = (data) => async () => {
     const newData = await response.json();
 
     return newData;
-  } catch (error) {
+  } catch (err) {
     console.error("Error adding Image:", err);
     return err;
   }
@@ -195,20 +195,26 @@ const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SPOTS:
       return { ...state, spots: action.payload };
+
     case ADD_SPOT: {
-      const newState = {...state};
-      newState.spots[action.payload.id] = action.payload;
-      return newState;
+      const newSpot = action.payload;
+      return {
+        ...state,
+        spots: {
+          ...state.spots,
+          [newSpot.id]: newSpot,
+        },
+      };
     }
-    case DELETE_SPOT:
-      // Filter out the spot with the given ID from state.spots
+
+    case DELETE_SPOT: {
       const updatedSpots = state.spots.filter(spot => spot.id !== action.payload.spotId);
-        
-      // Return updated state with the filtered spots
       return {
         ...state,
         spots: updatedSpots,
       };
+    }
+
     default:
       return state;
   }

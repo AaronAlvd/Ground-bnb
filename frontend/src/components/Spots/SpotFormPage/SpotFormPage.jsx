@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as spotActions from '../../../store/spots';
 import './SpotFormPage.css';
