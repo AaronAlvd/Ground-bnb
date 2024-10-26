@@ -17,6 +17,8 @@ const setReviews = (reviews) => {
   }
 };
 
+
+
 export const createReview = (batchReview) => async (dispatch) => {
   const { review, userId, spotId, stars } = batchReview;
 
@@ -84,6 +86,26 @@ export const getReviews = () => {
       dispatch(setReviews(data.Reviews));
     } catch (err) {
       console.error("Error fetching reviews:", err);
+      // Optionally dispatch an error action or notify the user
+    }
+  };
+};
+
+export const deleteReview = (reviewId) => {
+  return async (dispatch) => {
+    try {
+      const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete review');
+      }
+
+      const data = await response.json();
+      dispatch(setReviews(data.Reviews));
+    } catch (err) {
+      console.error("Error deleting review:", err);
       // Optionally dispatch an error action or notify the user
     }
   };

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import OpenModalButton from '../../OpenModalButton/OpenModalButton';
+import DeleteReviewConfirm from './DeleteReviewConfirm.jsx';
 
 function ManageReviews() {
   const reviews = useSelector((state) => state.reviews.reviews)
@@ -37,16 +39,19 @@ function ManageReviews() {
           });
 
           return (
-            <div className="div-spotReview" key={review.id}>
+            <div className="div-MSR" key={review.id}>
               <div className="div-reviewTop">
                 <h3 className="reviewTop">{review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">{review.stars}<FontAwesomeIcon className="SD-icon"icon={faStar}/></h3>
               </div>
               <small>{traditionalDate}</small>
               <p>{review.review}</p>
+              <button>
+                <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm props={review.id}/>}/>
+              </button>
             </div>
           )
         }) : 
-        (<div className="div-spotReview">
+        (<div className="div-MSR">
           <h3>{reviews[0].User.firstName}</h3>
         </div>)
     }

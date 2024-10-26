@@ -195,7 +195,6 @@ const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SPOTS:
       return { ...state, spots: action.payload };
-
     case ADD_SPOT: {
       const newSpot = action.payload;
       return {
@@ -206,7 +205,6 @@ const spotReducer = (state = initialState, action) => {
         },
       };
     }
-
     case DELETE_SPOT: {
       const updatedSpots = state.spots.filter(spot => spot.id !== action.payload.spotId);
       return {
@@ -214,7 +212,6 @@ const spotReducer = (state = initialState, action) => {
         spots: updatedSpots,
       };
     }
-
     default:
       return state;
   }

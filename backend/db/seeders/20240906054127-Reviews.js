@@ -251,6 +251,17 @@ module.exports = {
         [Op.or]: [
           { spotId: 2 },
           { spotId: 1 },
+          { spotId: 4 },
+          { spotId: 3 },
+          { spotId: 5 },
+          { spotId: 6 },
+          { spotId: 7 },
+          { spotId: 8 },
+          { spotId: 9 },
+          { spotId: 10 },
+          { spotId: 11 },
+          { spotId: 12 },
+          { spotId: 13 },
         ]
       }
     });

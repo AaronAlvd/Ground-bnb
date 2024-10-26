@@ -222,6 +222,12 @@
 .reviewTop {
   margin: 15px 0 5px 0;
 }
+
+.centered-DOT {
+  font-size: 30px;
+  margin: 5px;
+  transform: translate(-10px, -8px);
+}
 /* ---- SPOT BODY ---- */
 
 

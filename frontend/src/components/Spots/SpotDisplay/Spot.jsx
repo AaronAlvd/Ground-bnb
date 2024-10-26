@@ -70,6 +70,11 @@ function Spot() {
     if (!reviews) {
       return null
     } else {
+        const lessThanOne = reviews.length > 0 ? (<div className="div-spotReview">
+          <h3>{reviews[0].User.firstName}</h3>
+        </div>) : 
+        (<h3>Be the first to post a review</h3>)
+
       return reviews.length > 1 ? 
         reviews.map((review) => {
           const createdAt = new Date(review.createdAt);
@@ -88,10 +93,8 @@ function Spot() {
               <p>{review.review}</p>
             </div>
           )
-        }) : 
-        (<div className="div-spotReview">
-          <h3>{reviews[0].User.firstName}</h3>
-        </div>)
+        }) : lessThanOne
+
     }
   }
 
@@ -138,8 +141,8 @@ function Spot() {
                     <span className="spotReserve"><p className="spotReserve SR-price">${spot.price}</p><small className="SD-subscript">night</small></span>
                   </div> 
                   <div className="div-SRT-right">
-                    {spot.avgRating ? <p className="spotReserve">{spot.avgRating} <FontAwesomeIcon className="SD-icon"icon={faStar}/></p> : <p className="spotReserve"> 0 <FontAwesomeIcon className="SD-icon"icon={faStar}/></p>}
-                    <span className="spotRating-divider"/><p className="spotReserve">{reviews.length} {reviews.length > 1 ? "Reviews" : "Review"}</p>
+                    {spot.avgRating ? <p className="spotReserve">{spot.avgRating} <FontAwesomeIcon className="SD-icon"icon={faStar}/></p> : <p className="spotReserve">New</p>}
+                    <p className="centered-DOT">.</p><p className="spotReserve">{reviews.length} {reviews.length > 1 ? "Reviews" : "Review"}</p>
                   </div>  
                 </div>
                   <div>
@@ -159,7 +162,7 @@ function Spot() {
           <div className="div-lowerBody">
             <div className="div-lowerBodyTitle">
               {spot.avgRating ? <p className="LB-Reviews">{spot.avgRating} <FontAwesomeIcon className="SD-icon"icon={faStar}/></p> : <p className="LB-Reviews"> 0 <FontAwesomeIcon className="SD-icon"icon={faStar}/></p>}
-              <span className="spotRating-divider"/><p className="LB-Reviews">{reviews.length }</p><p>{reviews.length > 1 ? "Reviews" : "Review"}</p>
+              <p className="centered-DOT">.</p><p className="LB-Reviews">{reviews.length }</p><p>{reviews.length > 1 ? "Reviews" : "Review"}</p>
             </div>
             <div className="div-lowerBodyReviews">
               {showReviews()}

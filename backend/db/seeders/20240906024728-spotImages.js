@@ -79,8 +79,19 @@ module.exports = {
     await SpotImage.destroy({
       where: {
         [Op.or]: [
-          { id: 3 },
-          { id: 2 },
+          { spotId: 1},
+          { spotId: 2},
+          { spotId: 3},
+          { spotId: 4},
+          { spotId: 5},
+          { spotId: 6},
+          { spotId: 7},
+          { spotId: 8},
+          { spotId: 9},
+          { spotId: 10},
+          { spotId: 11},
+          { spotId: 12},
+          { spotId: 13},
         ]
       }
     });

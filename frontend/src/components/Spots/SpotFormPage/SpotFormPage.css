@@ -1,12 +1,36 @@
+/* div {
+  border: 1px solid black;
+} */
+
 .div-spotForm {
   border: 1px solid black;
   width: 500px;
   height: min-content;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div-SF-location {
+  margin-bottom: 40px;
 }
 
 .spotForm {
   padding: 20px;
+}
+
+.div-SF-coordinates {
+  display: flex;
+  align-items: flex-end;
+}
+
+.div-ISF-URL {
+  margin: 30px 0 30px 20px;
+}
+
+.SF-image {
+  position: absolute;
+ transform: translate(0px, -20px);
 }
 
 .div-inputSpotForm {
@@ -24,14 +48,7 @@
   width: min-content;
 }
 
-.div-inputSpotForm03 {
-  display: flex;
-  align-items: flex-end;
-  margin: 20px;
-  padding: 10px 0 10px 0;
-}
-
-.div-spotFormLocation {
+.div-SF-cityState {
   display: flex;
 }
 
@@ -47,6 +64,7 @@
 }
 
 .SFIL-02 {
+  position: absolute;
   transform: translate(0px, -20px);
 }
 
@@ -71,6 +89,16 @@
   resize: none;
   width: 100%;
   height: 200px;
+}
+
+.SF-caption {
+  margin: 5px;
+  margin-left: 20px;
+}
+
+.SF-title {
+  margin: 5px;
+  margin-left: 20px;
 }
 
 .SFL-07 {
