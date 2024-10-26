@@ -18,11 +18,7 @@ module.exports = {
         lng: -122.4730327,
         name: "App Academy",
         description: `Each meticulously curated home in our Airbnb-inspired platform offers a welcoming sanctuary for travelers and explorers 
-                      alike, designed to blend modern comforts with local charm. From cozy urban lofts adorned with contemporary art and skyline 
-                      views to rustic countryside cottages nestled among rolling hills and vineyards, every residence promises a unique and 
-                      immersive experience. Discover spaces thoughtfully furnished for relaxation and productivity, whether you seek a bustling 
-                      city center retreat or a tranquil escape off the beaten path. Each home is a testament to our commitment to providing 
-                      unforgettable stays where comfort meets adventure.`,
+                      alike, designed to blend modern comforts with `,
         price: 123,
       },
       {
@@ -36,8 +32,7 @@ module.exports = {
         lng: -118.328661,
         name: "Code Camp",
         description: `Each meticulously curated home in our Airbnb-inspired platform offers a welcoming sanctuary for travelers and explorers 
-                      alike, designed to blend modern comforts with local charm. From cozy urban lofts adorned with contemporary art and skyline 
-                      views to rustic countryside cottages nestled among rolling hills and vineyards,`,
+                      `,
         price: 456
       },
       {
@@ -51,8 +46,7 @@ module.exports = {
         lng: -122.333056,
         name: "Tech University",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 789
       },
       {
@@ -66,8 +60,7 @@ module.exports = {
         lng: -97.743057,
         name: "Fullstack Academy",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 350,
       },
       {
@@ -81,8 +74,7 @@ module.exports = {
         lng: -121.886329,
         name: "Silicon Valley University",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 650,
       },
       {
@@ -96,8 +88,7 @@ module.exports = {
         lng: -74.005974,
         name: "NYC Tech School",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 800,
       },
       {
@@ -126,8 +117,7 @@ module.exports = {
         lng: -71.058884,
         name: "Boston Engineering Academy",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning. From pioneering research labs pushing 
+ From pioneering research labs pushing 
                       `,
         price: 600,
       },
@@ -142,8 +132,7 @@ module.exports = {
         lng: -104.990251,
         name: "Data Science School",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 700,
       },
       {
@@ -157,8 +146,7 @@ module.exports = {
         lng: -80.1918,
         name: "Cloud Computing Academy",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 750,
       },
       {
@@ -172,8 +160,7 @@ module.exports = {
         lng: -84.3880,
         name: "AI Development Institute",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning. `,
+ `,
         price: 900,
       },
       {
@@ -187,8 +174,7 @@ module.exports = {
         lng: -77.0369,
         name: "Cybersecurity Academy",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 850,
       },
       {
@@ -202,8 +188,7 @@ module.exports = {
         lng: -118.2437,
         name: "Game Development School",
         description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      collaborative spaces designed to foster creativity and hands-on learning.`,
+`,
         price: 999,
       },
     ]);
