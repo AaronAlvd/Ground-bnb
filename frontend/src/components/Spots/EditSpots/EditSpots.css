@@ -1,13 +1,32 @@
 .div-spotEditForm {
   display: flex;
   justify-content: center;
-  width: 400px;
+  align-items: center;
+  width: 450px;
+  height: 550px;
 }
 
 .div-ESFI {
-  padding: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .ESFI-textarea {
   resize: none;
+}
+
+.div-wrapESFI {
+  display: flex;
+}
+
+.EFI-buttons {
+  width: 100px;
+  height: 25px;
+  margin: 10px;
+}
+
+.div-ESFI-button {
+  display: flex;
+  justify-content: center;
 }

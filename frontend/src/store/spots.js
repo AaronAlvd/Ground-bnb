@@ -124,6 +124,42 @@ export const createSpot = (data) => async (dispatch) => {
   }
 };
 
+export const editSpot = (data, spotId) => async (dispatch) => {
+  try {
+    const { address, lng, lat, city, state, country, description, price, name } = data;
+
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        address,
+        city,
+        state,
+        country,
+        name,
+        lat,
+        lng,
+        description,
+        price,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create a spot.");
+    }
+
+    const newData = await response.json();
+    dispatch(addSpot(newData));
+
+    return newData;
+  } catch (err) {
+    console.error("Error creating spot:", err);
+    return err;
+  }
+};
+
 export const deleteSpot = async (spotId) => {
   try {
     // Send DELETE request to server

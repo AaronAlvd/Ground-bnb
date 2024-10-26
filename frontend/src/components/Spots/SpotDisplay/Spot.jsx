@@ -53,12 +53,10 @@ function Spot() {
 
   useEffect(() => {
      bookings.forEach((booking) => {
-      if (new Date(booking.endDate).getTime() < Date.now()) {
+      if (booking.spotId === spotId && new Date(booking.endDate).getTime() < Date.now()) {
         setShowReview(true);
       }
      });
-
-     setShowReview(true);
 
   }, [showReview]);
 
