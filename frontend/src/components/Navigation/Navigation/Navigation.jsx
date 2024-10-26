@@ -18,7 +18,7 @@ function Navigation() {
   return (
     <div className="div-nav">
       <div className="logo">
-        <img className="nav-logo" src="'../../../../public/GroundBNB24.jpg" onClick={logoClick}/>
+        <img className="nav-logo" src="/GroundBNB24.jpg" onClick={logoClick}/>
       </div>
       <div className="div-ul">
         <ul className="nav-ul">
