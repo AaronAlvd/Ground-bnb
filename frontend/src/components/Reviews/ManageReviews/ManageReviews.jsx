@@ -1,5 +1,6 @@
 import './ManageReviews.css';
 import * as reviewActions from '../../../store/review';
+import * as sessionActions from '../../../store/session.js';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +16,8 @@ function ManageReviews() {
     const fetchSpots = async () => {
       try {
         await Promise.all([     
-          dispatch(reviewActions.getReviews()),     
+          dispatch(reviewActions.getReviews()),
+          dispatch(sessionActions.restoreUser()),     
         ]);
       } catch (err) {
         console.error(err)

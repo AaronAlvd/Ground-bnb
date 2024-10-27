@@ -1,7 +1,10 @@
-import './ManageReviews.css'
 
-export default function DeleteReviewConfirm(props) {
-  <div className='div-confirmDelete'>
-    <button>Confirm Delete</button>
-  </div>
+function DeleteReviewConfirm(props) {
+  return (
+    <div className='div-confirmDelete'>
+      <button>Confirm Delete</button>
+    </div>
+  )
 }
+
+export default DeleteReviewConfirm;

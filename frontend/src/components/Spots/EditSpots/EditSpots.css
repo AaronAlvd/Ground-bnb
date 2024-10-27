@@ -1,32 +1,158 @@
-.div-spotEditForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 450px;
-  height: 550px;
-}
-
-.div-ESFI {
-  padding: 15px;
+.div-spotForm {
+  border: 1px solid black;
+  width: 500px;
+  height: min-content;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.ESFI-textarea {
-  resize: none;
+.div-SF-location {
+  margin-bottom: 40px;
 }
 
-.div-wrapESFI {
+.spotForm {
+  padding: 20px;
+}
+
+.div-SF-coordinates {
+  display: flex;
+  align-items: flex-end;
+}
+
+.div-ISF-URL {
+  margin: 30px 0 30px 20px;
+}
+
+.SF-image {
+  position: absolute;
+ transform: translate(0px, -20px);
+}
+
+.div-inputSpotForm {
+  display: flex;
+  align-items: flex-end;
+  margin: 20px;
+  padding: 10px 0 10px 0;
+}
+
+.div-ISF-button {
+  justify-content: center;
+}
+
+.div-SFIL03 {
+  width: min-content;
+}
+
+.div-SF-cityState {
   display: flex;
 }
 
-.EFI-buttons {
-  width: 100px;
-  height: 25px;
-  margin: 10px;
+.SFI-h2 {
+  margin: 0;
+  margin-right: 20px;
+  margin-left: 4px;
 }
 
-.div-ESFI-button {
+.spotForm-inputLabel {
+  position: absolute;
+  transform: translate(0, -27px);
+}
+
+.SFIL-02 {
+  position: absolute;
+  transform: translate(0px, -20px);
+}
+
+.formInput {
+  border: 2px solid black;
+  padding: 3px;
+}
+
+.formInputCity {
+  width: 220px;
+}
+
+.formInput01 {
+  width: 300px;
+}
+
+.formInput03 {
+  width: 175px;
+}
+
+.formInput07 {
+  resize: none;
+  width: 100%;
+  height: 200px;
+}
+
+.SF-caption {
+  margin: 5px;
+  margin-left: 20px;
+}
+
+.SF-title {
+  margin: 5px;
+  margin-left: 20px;
+}
+
+.SFL-07 {
+  position: absolute;
+  transform: translate(0, -213px);
+}
+
+.spotFormButton {
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 3px;
+}
+
+.outerDiv-spotForm {
+  width: 100vw;
   display: flex;
   justify-content: center;
 }
+
+/* ----- ERRORS ------ */
+
+.SFL-countryError {
+  position: absolute;
+  color: red;
+  transform: translate(70px, -9px);
+}
+
+.SFL-addressError {
+  position: absolute;
+  color: red;
+  transform: translate(70px, -9px);
+}
+
+.SFL-cityStateError {
+  position: absolute;
+  color: red;
+  transform: translate(50px, -36px);
+}
+
+.SFL-nameError {
+  position: absolute;
+  color: red;
+  transform: translate(60px, -11px);
+}
+
+
+.SFL-descriptionError {
+  position: absolute;
+  color: red;
+  transform: translate(90px, -197px);
+}
+
+.SFL-priceError {
+  position: absolute;
+  color: red;
+  transform: translate(50px, -9px);
+}
+
+/* ----- ERRORS ------ */

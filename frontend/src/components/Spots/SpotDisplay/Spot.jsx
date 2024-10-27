@@ -9,7 +9,9 @@ import { useEffect, useState } from "react";
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import ReviewForm from '../../Reviews/ReviewForm/ReviewForm';
 import EditSpots from "../EditSpots/EditSpots";
+import DeleteReviewConfirm from '../../Reviews/ManageReviews/DeleteReviewConfirm';
 import "./Spot.css";
+
 
 function Spot() {
   const dispatch = useDispatch();
@@ -91,6 +93,9 @@ function Spot() {
               </div>
               <small>{traditionalDate}</small>
               <p>{review.review}</p>
+              {user.id === review.User.id && <button className='SD-deleteReviewButton'>
+                <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm props={review.id}/>}/>
+              </button>}
             </div>
           )
         }) : lessThanOne

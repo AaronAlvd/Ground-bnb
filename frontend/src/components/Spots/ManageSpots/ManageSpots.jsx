@@ -1,13 +1,24 @@
 import { useEffect } from "react";
 import * as spotActions from "../../../store/spots"; 
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import OpenModalButton from "../../OpenModalButton/OpenModalButton";
+import EditSpots from "../EditSpots/EditSpots";
+import ConfirmDeleteSpot from "../ConfirmDeleteSpot/ConfirmDeleteSpot";
+// import { NavLink } from "react-router-dom";
 import './ManageSpots.css'
 
 
 function ManageSpots() {
   const spots = useSelector((state) => state.spots.spots);
   const user = useSelector((state) => state.session.user);
+  const userSpots = spots.reduce((acc, spot) => {
+    if (spot.ownerId === user.id) {
+      acc.push(spot);
+    }
+    return acc;
+  }, []);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,21 +33,31 @@ function ManageSpots() {
   }, [user, dispatch])
 
   return (
-    <div>
-      <ul className="ul-manageSpots">
-        {user ? spots.map((spot) => {
-          if (user.id === spot.ownerId) {
-            return (
-              <li key={spot.id} className="li-manageSpots">
-                <NavLink to={`/spots/${spot.id}`}><h2>{spot.name}</h2></NavLink>
-              </li>
-            )
-          }
-        }): 
-        <li>You are not signed in</li>}
-      </ul>
+    <div className="div-SDA-grid">
+      <div className="div-spotsGallery">
+        {userSpots.length > 0 ? userSpots.map((spot) => {
+          return (
+            <div className="SDA-box" key={spot.id}>
+              <img className="SDA-Image"src={spot.previewImage}/>
+              <div className="div-SDA-info">
+                <span className="SDA-Location"><p className="SDA-info-p">{spot.city}, {spot.state}</p></span>
+                {spot.avgRating ? <span className="SDA-Rating"><p className="SDA-info-p">{spot.avgRating}<FontAwesomeIcon className="SDA-icon"icon={faStar}/></p></span> :
+                                  <span className="SDA-Rating"><p className="SDA-info-p">New</p><FontAwesomeIcon className="SDA-icon"icon={faStar}/></span>}
+                <span className="SDA-Price"><p className="SDA-info-p">${spot.price}<small className="SDA-priceNight">/night</small></p></span>
+              </div>
+              <button>
+                <OpenModalButton buttonText="Update" modalComponent={<EditSpots spotId={spot.id}/>}/>
+              </button>
+              <button>
+                <OpenModalButton buttonText="Delete" modalComponent={<ConfirmDeleteSpot spotId={spot.id}/>}/>
+              </button>
+            </div>
+          )
+        }): <h2>No Spots Available</h2>
+        }
+      </div>
     </div>
-  )
+  );
 }
 
 export default ManageSpots;
