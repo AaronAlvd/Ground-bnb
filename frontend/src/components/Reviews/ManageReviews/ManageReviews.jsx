@@ -48,7 +48,7 @@ function ManageReviews() {
               <small>{traditionalDate}</small>
               <p>{review.review}</p>
               <button>
-                <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm props={review.id}/>}/>
+                <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm reviewId={review.id}/>}/>
               </button>
             </div>
           )

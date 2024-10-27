@@ -92,7 +92,7 @@ function EditSpots({ spotId }) {
   return (
     <div className='outerDiv-spotForm'>
       <div className="div-spotForm">
-        <h2>Create New Spot</h2>
+        <h2>Update Spot</h2>
         <form className="spotForm" onSubmit={(e) => handleSubmit(e)}>
           <div className='div-SF-location'>
             <h4 className='SF-title'>Where's your place located?</h4>

@@ -94,7 +94,7 @@ function Spot() {
               <small>{traditionalDate}</small>
               <p>{review.review}</p>
               {user.id === review.User.id && <button className='SD-deleteReviewButton'>
-                <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm props={review.id}/>}/>
+                <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm reviewId={review.id}/>}/>
               </button>}
             </div>
           )
@@ -155,12 +155,12 @@ function Spot() {
                   </div>
               </div>
               <div className="div-SD-buttons">
-                {showReview && <button className="SD-Button">
+                {/* showReview && */<button className="SD-Button">
                   <OpenModalButton buttonText="Make Review" modalComponent={<ReviewForm props={spot}/>}/>
                 </button>}
-                {owner && <button className="SD-Button">
+                {/* {owner && <button className="SD-Button">
                   <OpenModalButton buttonText="Edit" modalComponent={<EditSpots spotId={spotId}/>}/>
-                </button>}
+                </button>} */}
               </div>
             </div>
           </div>

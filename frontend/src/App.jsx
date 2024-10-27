@@ -7,6 +7,7 @@ import Spot from './components/Spots/SpotDisplay/Spot';
 import SpotFormPage from './components/Spots/SpotFormPage/SpotFormPage';
 import ManageSpots from './components/Spots/ManageSpots/ManageSpots';
 import ManageReviews from './components/Reviews/ManageReviews/ManageReviews';
+import EditSpots from './components/Spots/EditSpots/EditSpots';
 import * as sessionActions from './store/session';
 
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/reviews/current',
         element: <ManageReviews />
+      },
+      {
+        path: '/updatespotform',
+        element: <EditSpots />
       }
     ]
   }
