@@ -224,24 +224,24 @@ module.exports = {
         spotId: 12,
         stars: 3
       },
-      {
-        review: "Game Development School was a perfect stay. The property was well-designed, and the location in Los Angeles made it easy to get around. Would definitely stay again!",
-        userId: 10,
-        spotId: 13,
-        stars: 5
-      },
-      {
-        review: "Great spot with modern amenities. However, the price was a bit high for the size of the home. Aside from that, it was a comfortable and enjoyable stay.",
-        userId: 5,
-        spotId: 13,
-        stars: 4
-      },
-      {
-        review: "We had a nice stay at Game Development School. The place was clean, and the host was responsive. The price was on the high end, but the experience was good overall.",
-        userId: 9,
-        spotId: 13,
-        stars: 4
-      }
+      // {
+      //   review: "Game Development School was a perfect stay. The property was well-designed, and the location in Los Angeles made it easy to get around. Would definitely stay again!",
+      //   userId: 10,
+      //   spotId: 13,
+      //   stars: 5
+      // },
+      // {
+      //   review: "Great spot with modern amenities. However, the price was a bit high for the size of the home. Aside from that, it was a comfortable and enjoyable stay.",
+      //   userId: 5,
+      //   spotId: 13,
+      //   stars: 4
+      // },
+      // {
+      //   review: "We had a nice stay at Game Development School. The place was clean, and the host was responsive. The price was on the high end, but the experience was good overall.",
+      //   userId: 9,
+      //   spotId: 13,
+      //   stars: 4
+      // }
     ], { validate: true });  
   },
 
