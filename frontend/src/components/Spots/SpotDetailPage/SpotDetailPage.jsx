@@ -4,6 +4,7 @@ import * as reviewActions from '../../../store/review';
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
@@ -23,7 +24,8 @@ function SpotDetailPage() {
   const [error, setError] = useState(null);
   const [showReview, setShowReview] = useState(false);
   const [owner, setOwner] = useState(false);
-  const reviews = useSelector((state) => state.reviews.reviews)
+  const reviews = useSelector((state) => state.reviews.reviews);
+  const sortedReviews = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const showReviewButton = reviews.find((review) => user && review.userId === user.id);
 
 
@@ -74,8 +76,8 @@ function SpotDetailPage() {
       return null
     } else {
 
-      return reviews.length > 0 ? 
-        reviews.map((review) => {
+      return sortedReviews.length > 0 ? 
+        sortedReviews.map((review) => {
           const createdAt = new Date(review.createdAt);
           const traditionalDate = createdAt.toLocaleDateString('en-US', {
             year: 'numeric',
@@ -86,7 +88,14 @@ function SpotDetailPage() {
           return (
             <div className="div-spotReview" key={review.id}>
               <div className="div-reviewTop">
-                <h3 className="reviewTop">{review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">{review.stars.toFixed(2)}<FontAwesomeIcon className="SD-icon"icon={faStar}/></h3>
+                <h3 className="reviewTop">
+                  {review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">
+                  {review.stars >= 1 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
+                  {review.stars >= 2 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
+                  {review.stars >= 3 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
+                  {review.stars >= 4 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
+                  {review.stars >= 5 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
+                </h3>
               </div>
               <small>{traditionalDate}</small>
               <p>{review.review}</p>
@@ -166,8 +175,8 @@ function SpotDetailPage() {
           </div>
           <div className="div-lowerBody">
             <div className="div-lowerBodyTitle">
-              {spot.avgRating ? <p className="LB-Reviews">{spot.avgRating.toFixed(2)} <FontAwesomeIcon className="SD-icon"icon={faStar}/></p> : <p className="LB-Reviews"> New <FontAwesomeIcon className="SD-icon"icon={faStar}/></p>}
-              {reviews.length !== 0 && <><p className="centered-DOT">•</p><p className="LB-Reviews">{reviews.length }</p><p>{reviews.length != 1 ? "Reviews" : "Review"}</p></>}
+              {spot.avgRating ? <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>{spot.avgRating.toFixed(2)}</p> : <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>New</p>}
+              {reviews.length !== 0 && <><p className="centered-DOT">•</p><p className="LB-Reviews">{reviews.length } {reviews.length != 1 ? "Reviews" : "Review"}</p></>}
             </div>
             <div className="div-lowerBodyReviews">
               {showReviews()}

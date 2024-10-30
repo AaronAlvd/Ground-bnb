@@ -27,14 +27,14 @@ function SpotsDisplayPage() {
           <div className="SDP-div-SpotDiv" key={spot.id} onClick={() => handleClick(spot.id)} onMouseEnter={() => setIsHovered({ id: spot.id})} onMouseLeave={() => setIsHovered({ id: 0})}>
             <img className="SDP-img"src={spot.previewImage}/>
             <div className="SDP-div-SpotBody">
-              <span className="SDA-Location"><p className="SDA-info-p">{spot.city}, {spot.state}</p>  
-                {spot.avgRating ? <p className="SDA-info-p">{spot.avgRating.toFixed(2)}<FontAwesomeIcon className="SDA-icon"icon={faStar}/></p>:
-                                  <p className="SDA-info-p">New<FontAwesomeIcon className="SDA-icon"icon={faStar}/></p>}
-              </span>
+              <div className="SDA-Location"><p className="SDA-info-p">{spot.city}, {spot.state}</p>  
+                {spot.avgRating ? <p className="SDA-info-p"><FontAwesomeIcon className="SDA-icon"icon={faStar}/>{spot.avgRating.toFixed(2)}</p>:
+                                  <p className="SDA-info-p"><FontAwesomeIcon className="SDA-icon"icon={faStar}/>New</p>}
+              </div>
             
-              <span className="SDA-Price">
+              <div className="SDA-Price">
                 <p className="SDA-info-p">${spot.price}<small className="SDA-priceNight">/night</small></p>
-              </span>
+              </div>
             </div>
             {(isHovered.id === spot.id) && <div className='tooltip'>
               <p className="tooltipbox"><small>{spot.name}</small></p>

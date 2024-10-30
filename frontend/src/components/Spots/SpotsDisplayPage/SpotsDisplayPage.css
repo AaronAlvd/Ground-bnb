@@ -5,6 +5,7 @@
   justify-items: center;
   margin-left: 2.5vw;
   margin-right: 2.5vw;
+  row-gap: 20px;
 }
 
 .SDP-div-SpotDiv {
@@ -12,16 +13,16 @@
   grid-template-areas: 
     'spotImage'
     'body';
-  width: 300px;
-  grid-template-rows: 245px auto;
+  width: 320px;
+  grid-template-rows: 300px min-content;
   row-gap: 5px;
-  border: 1px solid black;
 }
 
 .SDP-img {
   grid-area: 'spotImage';
-  width: 300px;
-  height: 245px;
+  width: 320px;
+  height: 300px;
+  border-radius: 10px;
   object-fit: cover; /* Ensures the image covers the container without stretching */
   object-position: center; /* Center the image within the container */
 }
@@ -43,14 +44,15 @@
 }
 
 .SDA-Price {
-  padding: 2px;
-  margin: 0;
+  margin: 3px 0 3px 2px;
   font-size: 14px;
   font-weight: 700;
 }
 
 .SDA-info-p{
   margin: 0;
+  margin-right: 2px;
+  padding: 0;
   display: flex;
   align-items: center;
 }
@@ -58,7 +60,6 @@
 .SDA-icon {
   font-size: 12px;
   margin: 5px;
-  color: rgb(249, 215, 65);
 }
 
 .SDA-priceNight {

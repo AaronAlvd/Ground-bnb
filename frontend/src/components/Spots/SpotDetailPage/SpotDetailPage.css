@@ -180,7 +180,6 @@
 
 .SD-icon {
   margin: 0 10px 0 5px;
-  color: rgb(249, 215, 65);
 }
 
 .SD-subscript {
@@ -194,7 +193,6 @@
 
 .LB-Reviews {
  font-size: 20px;
- margin-right: 5px;
 }
 
 .div-spotReview {
@@ -229,7 +227,10 @@
 .centered-DOT {
   font-size: 30px;
   margin: 5px;
-  transform: translate(-10px, 0);
+}
+
+.SDP-faStar-review {
+  color: black;
 }
 /* ---- SPOT BODY ---- */
 
