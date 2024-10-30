@@ -18,7 +18,6 @@ function LoginFormPage() {
   const { closeModal } = useModal();
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +94,7 @@ function LoginFormPage() {
 
         <div className="div-button">
           {errors.credential && <p className="login-displayErrors">{errors.credential}</p>}
-          <button type="submit" className="submitButton" disabled={(password.length < 6) && (credential.length < 4)}>Login</button>
+          <button type="submit" className="submitButton" disabled={!((password.length > 5) && (credential.length > 3))}>Login</button>
         </div>
       </form>
 

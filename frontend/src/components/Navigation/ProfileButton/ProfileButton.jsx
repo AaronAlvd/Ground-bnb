@@ -42,6 +42,7 @@ function ProfileButton() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    setShowMenu(false);
     navigate('/');
   };
 
@@ -49,13 +50,13 @@ function ProfileButton() {
     if (showMenu && liveUser) {
       return (
         <ul className="UL-ModalButton-loggedIn" ref={ulRef}>
-          <li className={showMenu ? "ModalButton-list pbl-top" : null}><p className="userInfo">{liveUser.username}</p></li>
-          <li className={showMenu ? "ModalButton-list" : null}><p className="userInfo">Hello, {liveUser.firstName} {liveUser.lastName}</p></li>
+          <li className={showMenu ? "ModalButton-list pbl-top" : null}><p className="userInfo">Hello, {liveUser.firstName} {liveUser.lastName}</p></li>
+          <li className={showMenu ? "ModalButton-list" : null}><p className="userInfo">{liveUser.username}</p></li>
           <li className={showMenu ? "ModalButton-list" : null}><p className="userInfo">{liveUser.email}</p></li>
-          <li className={showMenu ? "ModalButton-list pbl-bottom" : null}>
+          <li className={showMenu ? "ModalButton-list" : null}>
             <button onClick={logout} className="pb-logout userInfo">Log Out</button>
           </li>
-          <li className={showMenu ? "ModalButton-list pbl-bottom" : null} onClick={() => navigate('/spots/current')}>
+          <li className={showMenu ? "ModalButton-list" : null} onClick={() => navigate('/spots/current')}>
             <button className="pb-logout userInfo">Manage Spots</button>
           </li>
           <li className={showMenu ? "ModalButton-list pbl-bottom" : null} onClick={() => navigate('/reviews/current')}>

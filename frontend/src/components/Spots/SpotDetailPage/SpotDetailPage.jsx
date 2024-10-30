@@ -8,12 +8,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import ReviewForm from '../../Reviews/ReviewForm/ReviewForm';
-import EditSpots from "../EditSpots/EditSpots";
 import DeleteReviewConfirm from '../../Reviews/ManageReviews/DeleteReviewConfirm';
-import "./Spot.css";
+import "./SpotDetailPage.css";
 
 
-function Spot() {
+function SpotDetailPage() {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spots = useSelector((state) => state.spots.spots);
@@ -25,11 +24,13 @@ function Spot() {
   const [showReview, setShowReview] = useState(false);
   const [owner, setOwner] = useState(false);
   const reviews = useSelector((state) => state.reviews.reviews)
+  const showReviewButton = reviews.find((review) => user && review.userId === user.id);
+
 
   useEffect(() => {
     const fetchSpots = async () => {
-      setLoading(true);   // Set loading state before fetch starts
-      setError(null);     // Clear any previous error messages
+      setLoading(true);
+      setError(null);
   
       try {
         if (user) {
@@ -51,16 +52,16 @@ function Spot() {
     };
   
     fetchSpots();
-  }, [dispatch, spotId, user]);  // Dependencies: re-run on `spotId` or `dispatch` change
+  }, [dispatch]);  // Dependencies: re-run on `spotId` or `dispatch` change
 
   useEffect(() => {
-     bookings.forEach((booking) => {
-      if (booking.spotId === spotId && new Date(booking.endDate).getTime() < Date.now()) {
-        setShowReview(true);
-      }
-     });
+    if (!showReviewButton && user && spot.ownerId !== user.id) {
+      setShowReview(true);
+    } else {
+      setShowReview(false);
+    }
 
-  }, [showReview, bookings, spotId]);
+  }, [showReview, bookings, spotId, showReviewButton]);
 
   useEffect(() => {
     if (user && spot && (spot.ownerId === user.id)) {
@@ -72,12 +73,8 @@ function Spot() {
     if (!reviews) {
       return null
     } else {
-        const lessThanOne = reviews.length > 0 ? (<div className="div-spotReview">
-          <h3>{reviews[0].User.firstName}</h3>
-        </div>) : 
-        (<h3>Be the first to post a review</h3>)
 
-      return reviews.length > 1 ? 
+      return reviews.length > 0 ? 
         reviews.map((review) => {
           const createdAt = new Date(review.createdAt);
           const traditionalDate = createdAt.toLocaleDateString('en-US', {
@@ -89,16 +86,16 @@ function Spot() {
           return (
             <div className="div-spotReview" key={review.id}>
               <div className="div-reviewTop">
-                <h3 className="reviewTop">{review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">{review.stars}<FontAwesomeIcon className="SD-icon"icon={faStar}/></h3>
+                <h3 className="reviewTop">{review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">{review.stars.toFixed(2)}<FontAwesomeIcon className="SD-icon"icon={faStar}/></h3>
               </div>
               <small>{traditionalDate}</small>
               <p>{review.review}</p>
-              {user.id === review.User.id && <button className='SD-deleteReviewButton'>
+              {(user && user.id === review.User.id) && <button className='SD-deleteReviewButton'>
                 <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm reviewId={review.id}/>}/>
               </button>}
             </div>
           )
-        }) : lessThanOne
+        }) : <h3>Be the first to post a review!</h3>
 
     }
   }
@@ -108,7 +105,7 @@ function Spot() {
   if (!spot) return <div>Spot not found.</div>;
 
   return (
-      <div className="div-spot">
+      <div className="SpotDetailPage-div">
         <div className="div-title">
           <h2 className="spotTitleName">{spot.name}</h2>
           <p className="spotTitlePlace">{spot.city}, {spot.state}, {spot.country}</p>
@@ -145,29 +142,32 @@ function Spot() {
                   <div className="div-SRT-left">
                     <span className="spotReserve"><p className="spotReserve SR-price">${spot.price}</p><small className="SD-subscript">night</small></span>
                   </div> 
+
                   <div className="div-SRT-right">
-                    {spot.avgRating ? <p className="spotReserve">{spot.avgRating} <FontAwesomeIcon className="SD-icon"icon={faStar}/></p> : <p className="spotReserve">New</p>}
-                    <p className="centered-DOT">.</p><p className="spotReserve">{reviews.length} {reviews.length > 1 ? "Reviews" : "Review"}</p>
-                  </div>  
-                </div>
+                      {spot.avgRating ? ( <p className="spotReserve"> {spot.avgRating.toFixed(2)} 
+                        <FontAwesomeIcon className="SD-icon" icon={faStar} /></p>) : 
+                        (<p className="spotReserve"> New <FontAwesomeIcon className="SD-icon" icon={faStar} /></p>)}
+                          {reviews.length !== 0 && (<> <p className="centered-DOT">•</p> <p className="spotReserve">
+                          {reviews.length} {reviews.length !== 1 ? "Reviews" : "Review"}</p></>
+                          )}
+                      </div> 
+                  </div>
+
                   <div>
                     <button className="SD-reserveButton" onClick={() => window.alert("Feature coming soon")}>Reserve</button>
                   </div>
               </div>
               <div className="div-SD-buttons">
-                {/* showReview && */<button className="SD-Button">
-                  <OpenModalButton buttonText="Make Review" modalComponent={<ReviewForm props={spot}/>}/>
+                {showReview && <button className="SD-Button">
+                  <OpenModalButton buttonText="Post Your Review" modalComponent={<ReviewForm props={spot}/>}/>
                 </button>}
-                {/* {owner && <button className="SD-Button">
-                  <OpenModalButton buttonText="Edit" modalComponent={<EditSpots spotId={spotId}/>}/>
-                </button>} */}
               </div>
             </div>
           </div>
           <div className="div-lowerBody">
             <div className="div-lowerBodyTitle">
-              {spot.avgRating ? <p className="LB-Reviews">{spot.avgRating} <FontAwesomeIcon className="SD-icon"icon={faStar}/></p> : <p className="LB-Reviews"> 0 <FontAwesomeIcon className="SD-icon"icon={faStar}/></p>}
-              <p className="centered-DOT">.</p><p className="LB-Reviews">{reviews.length }</p><p>{reviews.length > 1 ? "Reviews" : "Review"}</p>
+              {spot.avgRating ? <p className="LB-Reviews">{spot.avgRating.toFixed(2)} <FontAwesomeIcon className="SD-icon"icon={faStar}/></p> : <p className="LB-Reviews"> New <FontAwesomeIcon className="SD-icon"icon={faStar}/></p>}
+              {reviews.length !== 0 && <><p className="centered-DOT">•</p><p className="LB-Reviews">{reviews.length }</p><p>{reviews.length != 1 ? "Reviews" : "Review"}</p></>}
             </div>
             <div className="div-lowerBodyReviews">
               {showReviews()}
@@ -178,4 +178,4 @@ function Spot() {
   );
 }
 
-export default Spot;
+export default SpotDetailPage;

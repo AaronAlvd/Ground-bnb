@@ -23,6 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   font-size: 20px;
   font-weight: bold;
 }
@@ -40,6 +41,5 @@
   border: 1px solid black;
   margin: 15px;
   height: 35px;
-  width: 120px;
   border-radius: 5px;
 }

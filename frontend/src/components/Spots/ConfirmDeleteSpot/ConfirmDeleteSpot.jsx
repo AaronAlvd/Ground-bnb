@@ -1,40 +1,28 @@
-import './ConfirmDeleteSpot.css'
-import * as spotActions from '../../../store/spots'
+import './ConfirmDeleteSpot.css';
+import * as spotActions from '../../../store/spots';
+import { useModal } from '../../../context/modal'
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function ConfirmDeleteSpot({ spotId }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { closeModal } = useModal();
 
-  const deleteSpot = async () => {
-   try {
-     const response = await dispatch(spotActions.deleteSpot(spotId));
-
-     // Ensure the response is valid
-     if (!response.ok) {
-       throw new Error('Network response was not ok');
-     }
-
-     const data = await response.json();
-
-     // Check if the deletion was successful based on the response data
-     if (data.success) {
-       console.log('Spot deleted successfully:', data);
-       navigate('/');
-     } else {
-       console.error('Failed to delete spot:', data.message);
-     }
-   } catch (err) {
-     console.error('Failed to delete spot', err);
-   }
+  const deleteSpot = () => {
+    return dispatch(spotActions.deleteSpot(spotId))
+    .then(() => {
+      closeModal
+      Navigate('/');
+    })
   };
 
   return (
     <div className="div-CDS">
-      <button onClick={deleteSpot}>Confirm Delete</button>
+      <h2>Confirm Delete</h2>
+      <p className="CDS-P">Are you sure you want to remove this spot?</p>
+      <button className='CDS-button' onClick={deleteSpot}>Yes</button>
     </div>
-  )
+  );
 }
 
 export default ConfirmDeleteSpot;

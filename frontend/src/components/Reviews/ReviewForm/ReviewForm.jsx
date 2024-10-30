@@ -9,6 +9,7 @@ export default function ReviewForm({props}) {
   const [review, setReview] = useState("");
   const dispatch = useDispatch();
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -26,17 +27,17 @@ export default function ReviewForm({props}) {
     <div className="div-reviewForm">
       <form onSubmit={handleSubmit} className="reviewForm">
         <div className="div-reviewTextbox">
-          <label className="reviewForm-label">Share your experience</label>
-          <textarea value={review} className="reviewForm-textarea" onChange={(e) => setReview(e.target.value)} required></textarea>
+          <label className="reviewForm-label">How was your stay?</label>
+          <textarea value={review} className="reviewForm-textarea" onChange={(e) => setReview(e.target.value)} required placeholder="Leave your review here..."/>
         </div>
 
         <div className="div-reviewRating">
-          <label className="reviewForm-label">Rating</label>
+          <label className="reviewForm-label">Stars</label>
           <StarRating className="RF-starRating"/>
         </div>
 
         <div className="div-reviewButton">
-          <button onSubmit={handleSubmit} className="RF-submitButton" disabled={disabledButton} type="submit">Submit Review</button>
+          <button onSubmit={handleSubmit} className="RF-submitButton" disabled={review.length < 10 || window.rating === null} type="submit">Submit Your Review</button>
         </div>
       </form>
     </div>

@@ -80,12 +80,11 @@ function SpotFormPage () {
     .then((response) => {
       if (errors.address || errors.state || errors.city || errors.price || errors.description || errors.name || errors.country) {
         dispatch(spotActions.addSpotImage(response.id, photoUrl.url01));
-        navigate('/');
       }
     }) 
     .catch(async (res) => {
       const data = await res.json();
-      console.log(data)
+      navigate(`/spots/${data.id}`);
     });
   }
 

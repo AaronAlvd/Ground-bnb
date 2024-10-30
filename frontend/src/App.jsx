@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation/Navigation';
-import SpotsDisplayAll from './components/Spots/SpotsDisplayAll';
-import Spot from './components/Spots/SpotDisplay/Spot';
+import SpotsDisplayPage from './components/Spots/SpotsDisplayPage';
+import SpotDetailPage from './components/Spots/SpotDetailPage/SpotDetailPage';
 import SpotFormPage from './components/Spots/SpotFormPage/SpotFormPage';
 import ManageSpots from './components/Spots/ManageSpots/ManageSpots';
 import ManageReviews from './components/Reviews/ManageReviews/ManageReviews';
-import EditSpots from './components/Spots/EditSpots/EditSpots';
+import UpdateSpot from './components/Spots/UpdateSpot/UpdateSpot';
 import * as sessionActions from './store/session';
 
 
@@ -35,11 +35,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <SpotsDisplayAll />
+        element: <SpotsDisplayPage />
       },
       {
         path: 'spots/:spotId',
-        element: <Spot />
+        element: <SpotDetailPage />
       },
       {
         path: '/spotformpage',
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/updatespotform',
-        element: <EditSpots />
+        element: <UpdateSpot />
       }
     ]
   }

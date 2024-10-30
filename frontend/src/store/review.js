@@ -84,6 +84,7 @@ export const getReviews = () => {
 
       const data = await response.json();
       dispatch(setReviews(data.Reviews));
+      
     } catch (err) {
       console.error("Error fetching reviews:", err);
       // Optionally dispatch an error action or notify the user

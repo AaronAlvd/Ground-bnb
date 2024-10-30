@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import * as spotActions from '../../../store/spots';
-import './EditSpots.css'
+import './UpdateSpot.css'
 
-function EditSpots({ spotId }) {
+function UpdateSpot({ spotId }) {
   const [errors, setErrors] = useState({});
   const spots = useSelector((state) => state.spots.spots)
   const spot = spots.find((data) => data.id === Number(spotId));
@@ -202,4 +202,4 @@ function EditSpots({ spotId }) {
   );
 }
 
-export default EditSpots;
+export default UpdateSpot;

@@ -1,41 +1,39 @@
-.div-spotsGallery {
+.SDP-div {
   display: grid;
-  width: 90vw;
+  width: 95vw;
   grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  column-gap: 15px;
+  justify-items: center;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
 }
 
-.div-SDA-grid {
-  display: flex;
-  justify-content: center;
-}
-
-.SDA-box {
+.SDP-div-SpotDiv {
   display: grid;
   grid-template-areas: 
     'spotImage'
-    'information';
+    'body';
   width: 300px;
-  grid-template-rows: 245px 60px;
+  grid-template-rows: 245px auto;
   row-gap: 5px;
-  margin: 5px
+  border: 1px solid black;
 }
 
-.SDA-Image {
+.SDP-img {
   grid-area: 'spotImage';
-  height: auto;
-  border-radius: 15px;
   width: 300px;
   height: 245px;
   object-fit: cover; /* Ensures the image covers the container without stretching */
   object-position: center; /* Center the image within the container */
 }
 
-.div-SDA-info {
-  grid-area: 'information';
+.SDP-div-InformationBody {
+  grid-area: 'body';
 }
 
 .SDA-Location {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -45,7 +43,7 @@
 }
 
 .SDA-Price {
-  padding: 0;
+  padding: 2px;
   margin: 0;
   font-size: 14px;
   font-weight: 700;
@@ -63,12 +61,20 @@
   color: rgb(249, 215, 65);
 }
 
-.SDA-Rating {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+.SDA-priceNight {
+  margin-left: 1px;
+  align-self: flex-end;
 }
 
-.SDA-priceNight {
-  margin-left: 2px;
+.tooltip {
+  display: flex;
+  position: absolute;
+  background-color: rgb(55, 55, 55);
+  transform: translate(100px, 15px);
+  color: white;
+  padding: 2px;
+}
+
+.tooltipbox {
+  margin: 0;
 }
