@@ -27,13 +27,14 @@ function SpotDetailPage() {
   const reviews = useSelector((state) => state.reviews.reviews);
   const sortedReviews = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const showReviewButton = reviews.find((review) => user && review.userId === user.id);
+  const spotImages = spot.spotImages
 
 
   useEffect(() => {
     const fetchSpots = async () => {
       setLoading(true);
       setError(null);
-  
+
       try {
         if (user) {
           await Promise.all([
@@ -120,21 +121,19 @@ function SpotDetailPage() {
           <p className="spotTitlePlace">{spot.city}, {spot.state}, {spot.country}</p>
         </div>
         <div className="div-pictures">
-          <div  className="div-mainImage" id="picture-01">
-            <img src={spot.previewImage} id="image-01"/>
-          </div>
-
-          <div  className="div-sideImage" id="picture-02">
-
-          </div>
-
-          <div  className="div-sideImage" id="picture-03">
-          </div>
-
-          <div  className="div-sideImage" id="picture-04">
-          </div>
-
-          <div  className="div-sideImage" id="picture-05">
+          {spotImages.map((data) => {
+            if (data.preview) {
+              return <div  className="div-mainImage"><img class="mainImage" src={data.url}/></div>
+            }
+          })}
+          <div className="div-sideImages">
+          {spotImages.map((data) => {
+            if (spotImages.indexOf(data) > 3) {
+              return 
+            } else if (!data.preview){
+              return <img className="sideImage" src={data.url}/>
+            }
+          })}
           </div>
         </div>
         <div className="div-body">

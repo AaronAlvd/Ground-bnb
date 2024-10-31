@@ -2,8 +2,9 @@ import { csrfFetch } from "./csrf";
 // import { useDispatch } from 'react-redux';
 
 const SET_SPOTS = "spots/setSpots";
-const ADD_SPOT = "spots/addSpot"
+const ADD_SPOT = "spots/addSpot";
 const DELETE_SPOT = "spots/deleteSpot";
+const SPOT_IMAGES = "spots/getImages";
 
 const setSpots = (spots) => {
   return {
@@ -28,8 +29,6 @@ export const getSpots = () => {
       if (response.ok) {
         const data = await response.json();
         const formattedSpots = data.Spots.map((data) => {
-          const previewImage = data.spot.SpotImages[0].preview
-
           return {
             id: data.spot.id,
             ownerId: data.spot.userId,
@@ -45,7 +44,7 @@ export const getSpots = () => {
             createdAt: data.spot.createdAt,
             updatedAt: data.spot.updatedAt,
             avgRating: data.spot.avgStarRating,
-            previewImage
+            spotImages: data.spot.SpotImages
           };
         })
         dispatch(setSpots(formattedSpots)); // Dispatch the action with the fetched spots
@@ -195,16 +194,13 @@ const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SPOTS:
       return { ...state, spots: action.payload };
-    case ADD_SPOT: {
-      const newSpot = action.payload;
-      return {
-        ...state,
-        spots: {
-          ...state.spots,
-          [newSpot.id]: newSpot,
-        },
-      };
-    }
+      case ADD_SPOT: {
+        const newSpot = action.payload;
+        return {
+          ...state,
+          spots: [...state.spots, newSpot], // Add the new spot to the existing array
+        };
+      }
     case DELETE_SPOT: {
       const updatedSpots = state.spots.filter(spot => spot.id !== action.payload.spotId);
       return {

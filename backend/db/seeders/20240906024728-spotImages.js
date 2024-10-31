@@ -72,6 +72,26 @@ module.exports = {
         url: "https://media.istockphoto.com/id/848549286/photo/dream-home-luxury-house-success.jpg?s=612x612&w=0&k=20&c=cjhoNqomNTxgYWxuZ9Ev5PxZh6WY96vvDGf3Hl-7x-U=",
         preview: true,
       },
+      {
+        spotId: 14,
+        url: "https://cdn.britannica.com/63/256363-050-4334DD67/versailles-palace-facade-paris-france-chateau-de-versailles.jpg",
+        preview: true,
+      },
+      {
+        spotId: 14,
+        url: "https://i.natgeofe.com/n/5f01634d-6d3c-49a8-beb4-75283b26e411/Versailles_p262_2x1.jpg",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "https://cdn.britannica.com/41/167741-050-F76F8A59/Tourists-Royal-Court-Palace-of-Versailles-France.jpg",
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx_VSp4JcrDu203K6P4p1cZwFhZ42OeHbo1g&s",
+        preview: false,
+      },
   ]);
   },
 
@@ -92,6 +112,7 @@ module.exports = {
           { spotId: 11},
           { spotId: 12},
           { spotId: 13},
+          { spotId: 14},
         ]
       }
     });

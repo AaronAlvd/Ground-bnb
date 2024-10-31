@@ -4,15 +4,14 @@
     'Title'
     'Pictures'
     'Body';
-  grid-template-rows: 50px auto 1fr; /* Define the heights of each row */
+  grid-template-rows: 50px 55vh 1fr; /* Define the heights of each row */
   grid-gap: 10px;
   height: 100vh; /* Set the container height to fill the viewport */
-  margin: 20px 20px 0 20px;
+  margin: 20px 20px 20px 20px;
 }
 
 .div-title {
   grid-area: 'Title';
-  /* border: 1px solid black; */
   align-items: center;
 }
 
@@ -32,48 +31,31 @@
   grid-area: 'Pictures';
   height: 55vh;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: 
-    "pic01 pic02 pic03"
-    "pic01 pic04 pic05";
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "mainImage sideImages";
 }
 
-#picture-01 {
-  grid-area: pic01;
-}
-
-#image-01 {
+.mainImage {
+  height: 55vh;
   width: 100%;
-  height: 100%;
-  border-radius: 10px;
 }
 
-#picture-02 {
-  grid-area: pic02;
-  
-}
-#picture-03 {
-  grid-area: pic03;
-  
-}
-#picture-04 {
-  grid-area: pic04;
-  
-}
-#picture-05 {
-  grid-area: pic05;
-  
+.sideImage {
+  height: 27.5vh;
+  width: 100%;
 }
 
-.div-sideImage {
-  object-fit: cover;
-  margin: 1px;
+.div-sideImages {
+  display: grid;
+  grid-area: "sideImages";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin-bottom: 10px;
 }
 
 .div-mainImage {
+  grid-area: "pic01";
   object-fit: cover;
-  margin: 1px;
 }
 
 /* ---- PICTURES ---- */

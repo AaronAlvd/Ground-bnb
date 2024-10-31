@@ -285,8 +285,8 @@ router.get('/', async (req, res, next) => {
         },
         {
           model: SpotImage,
-          attributes: [['url', 'preview']], // Fetch the preview image URL
-          where: { preview: 1 },
+          attributes: ['url', 'preview'], // Fetch the preview image URL
+          // where: { preview: 1 },
           required: false // Include spots even if they have no preview image
         }
       ],
@@ -302,27 +302,7 @@ router.get('/', async (req, res, next) => {
     // Format the response for each spot
     const formattedSpots = {
       Spots: spots.map(spot => {
-        const previewImage = spot.SpotImages.length > 0 ? spot.SpotImages[0].preview : null;
-
         return { spot }
-
-        return {
-          id: spot.id,
-          ownerId: spot.userId,
-          address: spot.address,
-          city: spot.city,
-          state: spot.state,
-          country: spot.country,
-          lat: spot.lat,
-          lng: spot.lng,
-          name: spot.name,
-          description: spot.description,
-          price: spot.price,
-          createdAt: spot.createdAt,
-          updatedAt: spot.updatedAt,
-          avgRating: spot.avgStarRating ? parseFloat(spot.avgStarRating).toFixed(2) : null,
-          previewImage
-        };
       }),
       page,
       size

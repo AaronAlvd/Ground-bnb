@@ -191,6 +191,21 @@ module.exports = {
 `,
         price: 999,
       },
+      {
+        id: 14,
+        userId: 2, // Replace with the appropriate userId
+        address: "Place d'Armes",
+        city: "Versailles",
+        state: "Île-de-France",
+        country: "France",
+        lat: 48.804864,
+        lng: 2.120355,
+        name: "Palace of Versailles",
+        description: `The Palace of Versailles is a stunning royal residence that epitomizes the opulence and grandeur of the French monarchy. 
+                      Surrounded by beautifully manicured gardens, the palace showcases exquisite architecture and art, attracting millions 
+                      of visitors each year eager to explore its rich history and remarkable beauty.`,
+        price: 3100, // This can be set according to your rental purposes (usually not rented out)
+      }
     ]);
   },
 
@@ -211,6 +226,7 @@ module.exports = {
           { id: 11},
           { id: 12},
           { id: 13},   
+          { id: 14},   
         ]
       }
     });
