@@ -171,7 +171,7 @@ function SpotDetailPage() {
                   </div>
 
                   <div className="SpotDetailPage-div-reserveCalender">
-                    <ReserveCalendar />
+                    <OpenModalButton buttonText="Reserve" modalComponent={<ReserveCalendar />}/>
                   </div>
               </div>
               <div className="div-SD-buttons">

@@ -1,10 +1,42 @@
+.ReserveCalendar-div {
+  padding: 20px;
+}
+
 .ReserveCalendar-div-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
 
 .ReserveCalendar-div-box {
-  border: 1px solid black;
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ReserveCalendar-div-month {
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.ReserveCalendar-month {
+  margin: 0;
+  text-align: center;
+}
+
+.ReserveCalender-div-dayNames {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ReserveCalendar-dayName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  color: rgb(109, 109, 109);
+  margin: 0;
 }
