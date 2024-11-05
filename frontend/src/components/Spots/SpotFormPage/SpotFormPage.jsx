@@ -98,7 +98,6 @@ function SpotFormPage () {
           price,
       }));
 
-      console.log(response);
       if (response.errors) {
           setErrors(() => {
               const err = {};
@@ -109,8 +108,8 @@ function SpotFormPage () {
           });
           window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-          // const response02 = await dispatch(spotActions.addSpotImage({ file: file.previewImage, spotId: response.id }));
-          // console.log(response02);
+          const respone02 = await dispatch(spotActions.addSpotImage({ file: file.previewImage, spotId: response.id }));
+          
       }
     } catch (error) {
       console.error("Error:", error);
@@ -234,6 +233,7 @@ function SpotFormPage () {
               {imageFiles && imageFiles.map((data) => data)}
               <button onClick={(e) => addImageFile(e)} disabled={imageFiles.length > 3}>Add Image</button>
           </div>
+
 
           <div className="SFP-div-inputSpotForm div-ISF-button">
             <button type="submit" className="spotFormButton">Create Spot</button>

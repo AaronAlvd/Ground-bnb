@@ -1,0 +1,10 @@
+.ReserveCalendar-div-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.ReserveCalendar-div-box {
+  border: 1px solid black;
+  width: 45px;
+  height: 45px;
+}

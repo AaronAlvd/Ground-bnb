@@ -8,6 +8,7 @@ import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
+import ReserveCalendar from "./ReserveCalendar/ReserveCalendar";
 import ReviewForm from '../../Reviews/ReviewForm/ReviewForm';
 import DeleteReviewConfirm from '../../Reviews/ManageReviews/DeleteReviewConfirm';
 import "./SpotDetailPage.css";
@@ -160,8 +161,8 @@ function SpotDetailPage() {
                   </div> 
 
                   <div className="div-SRT-right">
-                      {spot.avgRating ? ( <p className="spotReserve"> {spot.avgRating.toFixed(2)} 
-                        <FontAwesomeIcon className="SD-icon" icon={faStar} /></p>) : 
+                      {spot.avgRating ? ( <p className="spotReserve"> 
+                        <FontAwesomeIcon className="SD-icon" icon={faStar}/>{spot.avgRating.toFixed(2)}</p>) : 
                         (<p className="spotReserve"> New <FontAwesomeIcon className="SD-icon" icon={faStar} /></p>)}
                           {reviews.length !== 0 && (<> <p className="centered-DOT">•</p> <p className="spotReserve">
                           {reviews.length} {reviews.length !== 1 ? "Reviews" : "Review"}</p></>
@@ -169,8 +170,8 @@ function SpotDetailPage() {
                       </div> 
                   </div>
 
-                  <div>
-                    <button className="SD-reserveButton" onClick={() => window.alert("Feature coming soon")}>Reserve</button>
+                  <div className="SpotDetailPage-div-reserveCalender">
+                    <ReserveCalendar />
                   </div>
               </div>
               <div className="div-SD-buttons">
