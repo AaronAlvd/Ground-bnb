@@ -1,7 +1,48 @@
-.ul-manageSpots {
-  list-style-type: none;
+.MS-button {
+  width: 100px;
+  height: 30px;
 }
 
-.li-manageSpots {
-  
+.MS-title {
+  width: 95vw;
+}
+
+.MS-div-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 10px 0 10px 0;
+}
+
+.MS-div-box {
+  display: grid;
+  grid-template-areas: 
+    'spotImage'
+    'body';
+  width: 320px;
+  grid-template-rows: 300px min-content;
+  row-gap: 5px;
+}
+
+.MS-Image {
+  grid-area: 'spotImage';
+  width: 320px;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover; /* Ensures the image covers the container without stretching */
+  object-position: center; /* Center the image within the container */
+}
+
+.MS-div-grid {
+  display: grid;
+  width: 95vw;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  justify-items: center;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  row-gap: 20px;
+}
+
+.MS-div-spotBody {
+  grid-area: 'body';
 }

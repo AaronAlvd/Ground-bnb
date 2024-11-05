@@ -285,7 +285,7 @@ router.get('/', async (req, res, next) => {
         },
         {
           model: SpotImage,
-          attributes: ['url', 'preview'], // Fetch the preview image URL
+          attributes: ['file', 'preview'], // Fetch the preview image URL
           // where: { preview: 1 },
           required: false // Include spots even if they have no preview image
         }

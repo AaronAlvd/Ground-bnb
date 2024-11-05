@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import * as spotActions from '../../../store/spots';
 import './SpotFormPage.css';
 
@@ -10,6 +12,10 @@ function SpotFormPage () {
   const dispatch = useDispatch();
   const latitude = 90.00;
   const longitude = 90.00;
+  const [imageFiles, setImageFiles] = useState([]);
+  const [file, setFile] = useState({
+    previewImage: '',
+  });
   const [formData, setFormData] = useState({
     address: "",
     city: "",
@@ -21,15 +27,22 @@ function SpotFormPage () {
     description: "",
     price: "",
   });
-  const [photoUrl, setPhotoUrl] = useState({
-    url01: "",
-    url02: "",
-    url03: "",
-    url04: "",
-    url05: "",
-  })
 
-  const handleSubmit = (e) => {
+  const addImageFile = (e) => {
+    e.preventDefault();
+
+    setImageFiles(() => {
+      let retArr = [...imageFiles];
+      retArr.push(
+        <div className='SFP-div-inputSpotForm'>
+          <input type="file" className='SFP-fileUpload' value={file[`image0${imageFiles.length + 1}`]} name={`image0${imageFiles.length + 1}`} onChange={(e) => handleChangeFile(e)}/>
+        </div>
+      )
+      return retArr;
+    })
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { address, lng, lat, city, state, country, description, price, name} = formData;
@@ -61,31 +74,47 @@ function SpotFormPage () {
       if (description !== "" && description.length < 30) {
         err.description = "Description must be at least 30 characters"
       }
+      if (!file.previewImage) {
+        err.previewImage = "PreviewImage is required"
+      }
 
       return err;
     })
 
-    return dispatch(
-      spotActions.createSpot({
-        address,
-        city,
-        state,
-        country,
-        name,
-        lat: lat !== "" ? lat : latitude,
-        lng: lng !== "" ? lng : longitude,
-        description,
-        price
-    }))
-    .then((response) => {
-      if (errors.address || errors.state || errors.city || errors.price || errors.description || errors.name || errors.country) {
-        dispatch(spotActions.addSpotImage(response.id, photoUrl.url01));
+    if (Object.keys(errors).length > 0) {
+      return; // Prevent dispatch if there are validation errors
+    }
+
+    try {
+      const response = await dispatch(spotActions.createSpot({
+          address,
+          city,
+          state,
+          country,
+          name,
+          lat: lat !== "" ? lat : latitude,
+          lng: lng !== "" ? lng : longitude,
+          description,
+          price,
+      }));
+
+      console.log(response);
+      if (response.errors) {
+          setErrors(() => {
+              const err = {};
+              for (let key in response.errors) {
+                  err[key] = response.errors[key];
+              }
+              return err;
+          });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+          // const response02 = await dispatch(spotActions.addSpotImage({ file: file.previewImage, spotId: response.id }));
+          // console.log(response02);
       }
-    }) 
-    .catch(async (res) => {
-      const data = await res.json();
-      navigate(`/spots/${data.id}`);
-    });
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
 
   const handleChange = (e) => {
@@ -102,11 +131,11 @@ function SpotFormPage () {
     });
   };
 
-  const handleChangeURL = (e) => {
+  const handleChangeFile = (e) => {
     const { name, value } = e.target;
 
-    setPhotoUrl({
-      ...photoUrl,
+    setFile({
+      ...file,
       [name]: value
     })
 
@@ -121,106 +150,92 @@ function SpotFormPage () {
       <div className="div-spotForm">
         <h2>Create New Spot</h2>
         <form className="spotForm" onSubmit={(e) => handleSubmit(e)}>
-          <div className='div-SF-location'>
+          <div className='SFP-div-formSection'>
             <h4 className='SF-title'>Where's your place located?</h4>
             <p className="SF-caption"><small>Guests will only get your exact address once they booked a reservation.</small></p>
-            <div className="div-inputSpotForm">
-              <label className="spotForm-inputLabel">Address</label> {errors.address && <p className='SFL-addressError'>{errors.address}</p>}
-              <input type="text" name="address" className="formInput formInput01" value={formData.address} onChange={(e) => handleChange(e)}/>
+
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">Address</label> 
+              <input type="text" name="address" className="SFP-formInput" value={formData.address} onChange={(e) => handleChange(e)}/>
+              {errors.address && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.address}</p>}
             </div>
-            <div className='div-SF-cityState div-inputSpotForm'>
-              <div className="">
-                <label className="SFIL-02">City</label> {errors.city && <p className='SFL-cityStateError'>{errors.city}</p>}
-                <input type="text" name="city" className="formInput formInputCity" value={formData.city} onChange={(e) => handleChange(e)}/>
-              </div>
-              <h2 className="SFI-h2">,</h2>
-              <div className="">
-                <label className="SFIL-02">State</label> {errors.state && <p className='SFL-cityStateError'>{errors.state}</p>}
-                <input type="text" name="state" className="formInput" value={formData.state} onChange={(e) => handleChange(e)}/>
-              </div>
+
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">City</label> 
+              <input type="text" name="city" className="SFP-formInput" value={formData.city} onChange={(e) => handleChange(e)}/>
+              {errors.city && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.city}</p>}
             </div>
-            <div className="div-inputSpotForm">
-              <label className="spotForm-inputLabel">Country </label> {errors.country && <p className="SFL-countryError">{errors.country}</p>}
-              <input type="text" value={formData.country} name="country" className="formInput formInput01" onChange={(e) => handleChange(e)}/>
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">State</label> 
+              <input type="text" name="state" className="SFP-formInput" value={formData.state} onChange={(e) => handleChange(e)}/>
+              {errors.state && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.state}</p>}
             </div>
-            <div className="div-SF-coordinates div-inputSpotForm" >
-              <div className="div-SFIL03">
-                <label className="SFIL-02">Latitude</label>
-                <input type="text" name="lat" className="formInput formInput03" value={formData.lat} onChange={(e) => handleChange(e)}/>
-              </div>
-              <h2 className="SFI-h2">,</h2>
-              <div className="div-SFIL03">
-                <label className="SFIL-02">Longitude</label>
-                <input type="text" name="lng" className="formInput formInput03" value={formData.lng} onChange={(e) => handleChange(e)}/>
-              </div>
+
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">Country </label> 
+              <input type="text" value={formData.country} name="country" className="SFP-formInput" onChange={(e) => handleChange(e)}/>
+              {errors.country && <p className="SFL-Error"><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.country}</p>}
+            </div>
+
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">Latitude</label> 
+              <input type="text" name="lat" className="SFP-formInput" value={formData.lat} onChange={(e) => handleChange(e)}/>
+              {errors.lat && <p className="SFL-Error"><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.lat}</p>}
+            </div>
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">Longitude</label> 
+              <input type="text" name="lng" className="SFP-formInput" value={formData.lng} onChange={(e) => handleChange(e)}/>
+              {errors.lng && <p className="SFL-Error"><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.lng}</p>}
             </div>
           </div>
 
-          <div className='div-SF-description'>
+          <div className='SFP-div-formSection'>
             <h4 className='SF-title'>Describe your place to guests</h4>
             <p className="SF-caption"><small>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</small></p>
-            <div className="div-inputSpotForm">
-              <label className="SFL-07">Description</label> {errors.description && <p className='SFL-descriptionError'>{errors.description}</p>}
-              <textarea name="description" className="formInput formInput07" value={formData.description} onChange={(e) => handleChange(e)}
+
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">Description</label> 
+              <textarea name="description" className="SFP-formInput07" value={formData.description} onChange={(e) => handleChange(e)}
               placeholder='Please write at least 30 characters'></textarea>
+              {errors.description && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.description}</p>}
             </div>
           </div>
 
-          <div>
+          <div className='SFP-div-formSection'>
             <h4 className='SF-title'>Create a title for your spot</h4>
             <p className="SF-caption"><small>Catch guests' attention with a spot title that highlights what makes your place special.</small></p>
-            <div className="div-inputSpotForm">
-              <label className="spotForm-inputLabel">Name</label> {errors.name && <p className='SFL-nameError'>{errors.name}</p>}
-              <input type="text" name="name" className="formInput formInput01" value={formData.name} onChange={(e) => handleChange(e)} 
-              placeholder='Name of your spot'/>
+
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">Name</label> 
+              <input type="text" name="name" className="SFP-formInput" value={formData.name} onChange={(e) => handleChange(e)}/>
+              {errors.name && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.name}</p>}
             </div>
           </div>
 
-          <div>
+          <div className='SFP-div-formSection'>
             <h4 className='SF-title'>Set a base price for yout spot</h4>
             <p className="SF-caption"><small>Competitive pricing can help your listing stand out and rank higher in search results.</small></p>
-            <div className="div-inputSpotForm">
-              <label className="spotForm-inputLabel">Price</label> {errors.price && <p className='SFL-priceError'>{errors.price}</p>}
-              <input type="text" name="price" className="formInput formInput01" value={formData.price} onChange={(e) => handleChange(e)}
+
+            <div className="SFP-div-inputSpotForm">
+              <label className="SFP-inputLabel">Price</label> 
+              <input type="text" name="price" className="SFP-formInput" value={formData.price} onChange={(e) => handleChange(e)}
               placeholder='Price per night (USD)'/>
+              {errors.price && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/> {errors.price}</p>}
             </div>
           </div>
 
-          <div>
+          <div className='SFP-div-formSection'>
             <h4 className='SF-title'>Liven up your spot with photos</h4>
             <p className="SF-caption"><small>Submit a link to at least one photo to publish your spot.</small></p>
-              <div className="div-ISF-URL">
-                <label className="SF-image">Preview image URL</label> {errors.image && <p className='SFL-imageError'>Image is required</p>}
-                <input type="text" name="url01" className="formInput formInput01" value={photoUrl.url01} onChange={(e) => handleChangeURL(e)}
-                placeholder='Preview Image URL'/>
+              <div className="SFP-div-inputSpotForm">
+                <input type="file" className='SFP-fileUpload' value={file.previewImage} name="previewImage" onChange={(e) => handleChangeFile(e)}/>
+                {errors.previewImage && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/>{errors.previewImage}</p>}
               </div>
-
-              <div className="div-ISF-URL">
-                <label className="SF-image">Image URL</label> {errors.image && <p className='SFL-imageError'>Image is required</p>}
-                <input type="text" name="url02" className="formInput formInput01" value={photoUrl.url02} onChange={(e) => handleChangeURL(e)}
-                placeholder='Image URL'/>
-              </div>
-
-              <div className="div-ISF-URL">
-                <label className="SF-image">Image URL</label> {errors.image && <p className='SFL-imageError'>Image is required</p>}
-                <input type="text" name="url03" className="formInput formInput01" value={photoUrl.url03} onChange={(e) => handleChangeURL(e)}
-                placeholder='Image URL'/>
-              </div>
-
-              <div className="div-ISF-URL">
-                <label className="SF-image">Image URL</label> {errors.image && <p className='SFL-imageError'>Image is required</p>}
-                <input type="text" name="url04" className="formInput formInput01" value={photoUrl.url04} onChange={(e) => handleChangeURL(e)}
-                placeholder='Image URL'/>
-              </div>
-
-              <div className="div-ISF-URL">
-                <label className="SF-image">Image URL</label> {errors.image && <p className='SFL-imageError'>Image is required</p>}
-                <input type="text" name="url05" className="formInput formInput01" value={photoUrl.url05} onChange={(e) => handleChangeURL(e)}
-                placeholder='Image URL'/>
-              </div>
+              {imageFiles && imageFiles.map((data) => data)}
+              <button onClick={(e) => addImageFile(e)} disabled={imageFiles.length > 3}>Add Image</button>
           </div>
 
-          <div className="div-inputSpotForm div-ISF-button">
+          <div className="SFP-div-inputSpotForm div-ISF-button">
             <button type="submit" className="spotFormButton">Create Spot</button>
           </div>
         </form>

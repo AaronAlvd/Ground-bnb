@@ -24,8 +24,8 @@ module.exports = {
         },
         onDelete: 'CASCADE'
       },
-      url: {
-        type: Sequelize.STRING,
+      file: {
+        type: Sequelize.BLOB,
         allowNull: false,
       },
       preview: {

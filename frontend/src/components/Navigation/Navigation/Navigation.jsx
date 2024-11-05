@@ -1,9 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ProfileButton } from '../ProfileButton';
-// import OpenModalButton from '../../OpenModalButton/OpenModalButton';
-// import LoginFormModal from '../../LoginFormModal/LoginFormModal';
-// import SignupFormModal from '../../SignUp/SignUpForm';
 import * as sessionActions from '../../../store/session';
 import './Navigation.css'
 import { useEffect } from 'react';
@@ -16,7 +13,7 @@ function Navigation() {
   useEffect(() => {
     const fetchUser = async () => {
       try{
-        await dispatch(sessionActions.restoreUser())
+        dispatch(sessionActions.restoreUser())
       } catch(err) {
 
       }

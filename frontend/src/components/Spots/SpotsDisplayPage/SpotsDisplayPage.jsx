@@ -24,12 +24,16 @@ function SpotsDisplayPage() {
     <div className="SDP-div">
       {spots.map((spot) => {
         const previewImage = () => {
-          for (let obj of spot.spotImages) {
-            if (obj.preview) {
-              return obj.url
-            }
+          const previewImageObj = spot.spotImages.find(obj => obj.preview);
+          if (previewImageObj) {
+            const byteArray = new Uint8Array(previewImageObj.file.data);
+            const binaryString = Array.from(byteArray)
+              .map(byte => String.fromCharCode(byte))
+              .join('');
+            return `data:image/jpeg;base64,${btoa(binaryString)}`; // Adjust MIME type if needed
           }
-        }
+          return null; // Return null if no preview image is found
+        };
 
         return (
           <div className="SDP-div-SpotDiv" key={spot.id} onClick={() => handleClick(spot.id)} onMouseEnter={() => setIsHovered({ id: spot.id})} onMouseLeave={() => setIsHovered({ id: 0})}>

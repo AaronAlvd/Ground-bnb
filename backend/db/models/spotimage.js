@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'CASCADE'
     },
-    url: {
-      type: DataTypes.STRING,
+    file: {
+      type: DataTypes.BLOB,
       allowNull: false,
     },
     preview: {

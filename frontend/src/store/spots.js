@@ -61,7 +61,7 @@ export const getSpots = () => {
 
 export const addSpotImage = (data) => async () => {
   try {
-    const { url, spotId } = data;
+    const { file, spotId } = data;
 
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
       method: 'POST',
@@ -69,8 +69,8 @@ export const addSpotImage = (data) => async () => {
         "Content-Type": "application/json",
       },
       body: {
-        url: url,
-        preview: false
+        file: file,
+        preview: true
       }
     })
 
@@ -119,7 +119,6 @@ export const createSpot = (data) => async (dispatch) => {
     return newData;
   } catch (err) {
     console.error("Error creating spot:", err);
-    return err;
   }
 };
 
