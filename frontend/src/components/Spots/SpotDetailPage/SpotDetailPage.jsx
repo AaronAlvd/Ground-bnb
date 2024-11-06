@@ -1,16 +1,12 @@
-import * as spotActions from "../../../store/spots"; 
-import * as bookingActions from '../../../store/booking';
-import * as reviewActions from '../../../store/review';
+import DispatchCalls from "../../../dispatchClass/useDispatch";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import ReserveCalendar from "./ReserveCalendar/ReserveCalendar";
 import ReviewForm from '../../Reviews/ReviewForm/ReviewForm';
-import DeleteReviewConfirm from '../../Reviews/ManageReviews/DeleteReviewConfirm';
 import ShowReviews from "./ShowReviews/ShowReviews";
 import "./SpotDetailPage.css";
 
@@ -27,37 +23,21 @@ function SpotDetailPage() {
   const [showReview, setShowReview] = useState(false);
   const [owner, setOwner] = useState(false);
   const reviews = useSelector((state) => state.reviews.reviews);
-  // const sortedReviews = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const showReviewButton = reviews.find((review) => user && review.userId === user.id);
   const spotImages = spot.spotImages
 
-
   useEffect(() => {
-    const fetchSpots = async () => {
-      setLoading(true);
-      setError(null);
+    const dispatchCalls = new DispatchCalls(dispatch);
 
-      try {
-        if (user) {
-          await Promise.all([
-            dispatch(spotActions.getSpots()),
-            dispatch(reviewActions.getReviews()),
-            dispatch(reviewActions.getSpotReviews(spotId)),
-            dispatch(bookingActions.getBookings())
-          ]);
-        } else {
-          dispatch(spotActions.getSpots()),
-          dispatch(reviewActions.getSpotReviews(spotId))
-        }
-      } catch (err) {
-        setError("Failed to load spots or bookings.");  // General error message
-      } finally {
-        setLoading(false);  // Reset loading state once done
-      }
-    };
-  
-    fetchSpots();
-  }, [dispatch]);  // Dependencies: re-run on `spotId` or `dispatch` change
+    if (user) {
+      dispatchCalls.SpotDetailPageCalls01(spotId);
+      setLoading(false)
+    } else {
+      dispatchCalls.SpotDetailPageCalls02(spotId);
+      setLoading(false)
+    }
+
+  }, [dispatch]);
 
   useEffect(() => {
     if (!showReviewButton && user && spot.ownerId !== user.id) {
