@@ -11,6 +11,7 @@ import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import ReserveCalendar from "./ReserveCalendar/ReserveCalendar";
 import ReviewForm from '../../Reviews/ReviewForm/ReviewForm';
 import DeleteReviewConfirm from '../../Reviews/ManageReviews/DeleteReviewConfirm';
+import ShowReviews from "./ShowReviews/ShowReviews";
 import "./SpotDetailPage.css";
 
 
@@ -18,7 +19,7 @@ function SpotDetailPage() {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spots = useSelector((state) => state.spots.spots);
-  const user = useSelector((state) => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const bookings = useSelector((state) => state.bookings.bookings)
   const spot = spots.find((spot) => spot.id === Number(spotId));
   const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ function SpotDetailPage() {
   const [showReview, setShowReview] = useState(false);
   const [owner, setOwner] = useState(false);
   const reviews = useSelector((state) => state.reviews.reviews);
-  const sortedReviews = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  // const sortedReviews = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const showReviewButton = reviews.find((review) => user && review.userId === user.id);
   const spotImages = spot.spotImages
 
@@ -72,44 +73,6 @@ function SpotDetailPage() {
       setOwner(true);
     }
   },[owner, spot, user]);
-
-  const showReviews = () => {
-    if (!reviews) {
-      return null
-    } else {
-
-      return sortedReviews.length > 0 ? 
-        sortedReviews.map((review) => {
-          const createdAt = new Date(review.createdAt);
-          const traditionalDate = createdAt.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          });
-
-          return (
-            <div className="div-spotReview" key={review.id}>
-              <div className="div-reviewTop">
-                <h3 className="reviewTop">
-                  {review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">
-                  {review.stars >= 1 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
-                  {review.stars >= 2 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
-                  {review.stars >= 3 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
-                  {review.stars >= 4 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
-                  {review.stars >= 5 ? (<FontAwesomeIcon className="SDP-faStar-review" icon={faStar}/>) : (<FontAwesomeIcon icon={farStar}/>)}
-                </h3>
-              </div>
-              <small>{traditionalDate}</small>
-              <p>{review.review}</p>
-              {(user && user.id === review.User.id) && <button className='SD-deleteReviewButton'>
-                <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm reviewId={review.id}/>}/>
-              </button>}
-            </div>
-          )
-        }) : <h3>Be the first to post a review!</h3>
-
-    }
-  }
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -187,7 +150,7 @@ function SpotDetailPage() {
               {reviews.length !== 0 && <><p className="centered-DOT">•</p><p className="LB-Reviews">{reviews.length } {reviews.length != 1 ? "Reviews" : "Review"}</p></>}
             </div>
             <div className="div-lowerBodyReviews">
-              {showReviews()}
+              <ShowReviews spotId={spotId}/>
             </div>
           </div>
         </div>
