@@ -6,6 +6,7 @@ import OpenModalButton from '../../../OpenModalButton/OpenModalButton';
 import DeleteReviewConfirm from '../../../Reviews/ManageReviews/DeleteReviewConfirm';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import './ShowReviews.css';
 
 export default function ShowReviews(spotId) {
   const reviews = useSelector((state) => state.reviews.reviews);
@@ -29,7 +30,7 @@ export default function ShowReviews(spotId) {
           day: 'numeric',
         });
         return (
-          <div className="div-spotReview" key={review.id}>
+          <div className="ShowReviews-div" key={review.id}>
             <div className="div-reviewTop">
               <h3 className="reviewTop">
                 {review.User.firstName} {review.User.lastName}</h3><h3 className="reviewTop">
@@ -42,8 +43,8 @@ export default function ShowReviews(spotId) {
             </div>
             <small>{traditionalDate}</small>
             <p>{review.review}</p>
-            {(user && user.id === review.User.id) && <button className='SD-deleteReviewButton'>
-              <OpenModalButton buttonText="Delete Review" modalComponent={<DeleteReviewConfirm reviewId={review.id}/>}/>
+            {(user && user.id === review.User.id) && <button className='ShowReviews-deleteButton'>
+              <OpenModalButton buttonText="Delete" modalComponent={<DeleteReviewConfirm reviewId={review.id}/>}/>
             </button>}
           </div>
         )

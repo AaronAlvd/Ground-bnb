@@ -179,18 +179,6 @@
  font-size: 20px;
 }
 
-.div-spotReview {
-  border: 2px solid black;
-  border-radius: 10px;
-  width: 70%;
-  margin-bottom: 15px;
-  padding: 10px;
-}
-
-.SD-deleteReviewButton {
-  margin-bottom: 5px;
-}
-
 .spotRating-divider {
   margin: 0 10px 0 0px;
   width: 2px;
@@ -198,24 +186,11 @@
   background-color: black;
 }
 
-.div-reviewTop {
-  display: flex;
-  justify-content: space-between;
-  height: min-content;
-}
-
-.reviewTop {
-  margin: 15px 0 5px 0;
-}
-
 .centered-DOT {
   font-size: 30px;
   margin: 5px;
 }
 
-.SDP-faStar-review {
-  color: black;
-}
 /* ---- SPOT BODY ---- */
 
 

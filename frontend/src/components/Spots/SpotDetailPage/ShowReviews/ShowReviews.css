@@ -1,0 +1,29 @@
+.ShowReviews-div {
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 500px;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: .85em;
+}
+
+.div-reviewTop {
+  display: flex;
+  justify-content: space-between;
+  height: min-content;
+}
+
+.reviewTop {
+  margin: 15px 0 5px 0;
+}
+
+.SDP-faStar-review {
+  color: black;
+}
+
+.ShowReviews-deleteButton {
+  background-color: white;
+  border-radius: 3px;
+  width: 80px;
+  height: 27px;
+}
