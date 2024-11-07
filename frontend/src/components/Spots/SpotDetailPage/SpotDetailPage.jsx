@@ -8,6 +8,7 @@ import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import ReserveCalendar from "./ReserveCalendar/ReserveCalendar";
 import ReviewForm from '../../Reviews/ReviewForm/ReviewForm';
 import ShowReviews from "./ShowReviews/ShowReviews";
+import DetailPagePhotos from "./DetailPagePhotos/DetailPagePhotos";
 import "./SpotDetailPage.css";
 
 
@@ -24,7 +25,6 @@ function SpotDetailPage() {
   const [owner, setOwner] = useState(false);
   const reviews = useSelector((state) => state.reviews.reviews);
   const showReviewButton = reviews.find((review) => user && review.userId === user.id);
-  const spotImages = spot.spotImages
 
   useEffect(() => {
     const dispatchCalls = new DispatchCalls(dispatch);
@@ -64,30 +64,7 @@ function SpotDetailPage() {
           <h2 className="spotTitleName">{spot.name}</h2>
           <p className="spotTitlePlace">{spot.city}, {spot.state}, {spot.country}</p>
         </div>
-        <div className="div-pictures">
-          {spotImages.map((data) => {
-            if (data.preview) {
-              const byteArray = new Uint8Array(data.file.data);
-              const binaryString = Array.from(byteArray)
-                  .map(byte => String.fromCharCode(byte))
-                  .join('');
-              return <img className="mainImage"src={`data:image/jpeg;base64,${btoa(binaryString)}`}/> // Ensure you use the correct MIME type 
-            }
-          })}
-          <div className="div-sideImages">
-          {spotImages.map((data) => {
-            if (spotImages.indexOf(data) > 3) {
-              return 
-            } else if (!data.preview){
-              const byteArray = new Uint8Array(data.file.data);
-              const binaryString = Array.from(byteArray)
-                .map(byte => String.fromCharCode(byte))
-                .join('');
-              return <img className="sideImage"src={`data:image/jpeg;base64,${btoa(binaryString)}`}/> // Ensure you use the correct MIME type
-            }
-          })}
-          </div>
-        </div>
+        <DetailPagePhotos spotImages={spot.spotImages}/>
         <div className="div-body">
           <div className="div-upperBody">
             <div className="div-upperBodyLeft">
