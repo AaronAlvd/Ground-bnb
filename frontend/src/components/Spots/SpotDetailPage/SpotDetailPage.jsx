@@ -20,7 +20,6 @@ function SpotDetailPage() {
   const bookings = useSelector((state) => state.bookings.bookings)
   const spot = spots.find((spot) => spot.id === Number(spotId));
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [showReview, setShowReview] = useState(false);
   const [owner, setOwner] = useState(false);
   const reviews = useSelector((state) => state.reviews.reviews);
@@ -55,7 +54,6 @@ function SpotDetailPage() {
   },[owner, spot, user]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
   if (!spot) return <div>Spot not found.</div>;
 
   return (

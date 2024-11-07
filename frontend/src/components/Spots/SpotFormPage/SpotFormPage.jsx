@@ -32,10 +32,16 @@ function SpotFormPage () {
     e.preventDefault();
 
     setImageFiles(() => {
+      setFile(() => {
+        const obj = {...file};
+        obj[`image0${imageFiles.length + 1}`] = '';
+        return obj;
+      });
       let retArr = [...imageFiles];
       retArr.push(
         <div className='SFP-div-inputSpotForm'>
-          <input type="file" className='SFP-fileUpload' value={file[`image0${imageFiles.length + 1}`]} name={`image0${imageFiles.length + 1}`} onChange={(e) => handleChangeFile(e)}/>
+          <label htmlFor={`image0${imageFiles.length + 1}`} className='SFP-label-fileUpload'>+</label>
+          <input type="file" className='SFP-fileUpload' id={`image0${imageFiles.length + 1}`} value={file[`image0${imageFiles.length + 1}`]} name={`image0${imageFiles.length + 1}`} onChange={(e) => handleChangeFile(e)}/>
         </div>
       )
       return retArr;
@@ -108,7 +114,13 @@ function SpotFormPage () {
           });
           window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-          const respone02 = await dispatch(spotActions.addSpotImage({ file: file.previewImage, spotId: response.id }));
+          for (let i = 0; i < imageFiles.length + 1; i++) {
+            if (i === 0) {
+              dispatch(spotActions.addSpotImage(file.previewImage))
+            } else {
+              dispatch(spotActions.addSpotImage(file[`image0${i}`]))
+            }
+          }
           
       }
     } catch (error) {
@@ -227,7 +239,8 @@ function SpotFormPage () {
             <h4 className='SF-title'>Liven up your spot with photos</h4>
             <p className="SF-caption"><small>Submit a link to at least one photo to publish your spot.</small></p>
               <div className="SFP-div-inputSpotForm">
-                <input type="file" className='SFP-fileUpload' value={file.previewImage} name="previewImage" onChange={(e) => handleChangeFile(e)}/>
+                <label htmlFor='previewImage' className='SFP-label-fileUpload'>+</label>
+                <input type="file" className='SFP-fileUpload' id="previewImage" value={file.previewImage} name="previewImage" onChange={(e) => handleChangeFile(e)}/>
                 {errors.previewImage && <p className='SFL-Error'><FontAwesomeIcon icon={faExclamationTriangle}/>{errors.previewImage}</p>}
               </div>
               {imageFiles && imageFiles.map((data) => data)}
