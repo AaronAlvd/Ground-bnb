@@ -25,7 +25,6 @@ export const getSpots = () => {
     // Return a function that takes dispatch as an argument
     try {
       const response = await csrfFetch("/api/spots/");
-
       if (response.ok) {
         const data = await response.json();
         const formattedSpots = data.Spots.map((data) => {
@@ -43,7 +42,7 @@ export const getSpots = () => {
             price: data.spot.price,
             createdAt: data.spot.createdAt,
             updatedAt: data.spot.updatedAt,
-            avgRating: data.spot.avgStarRating,
+            // avgRating: data.spot.avgStarRating,
             spotImages: data.spot.SpotImages
           };
         })
