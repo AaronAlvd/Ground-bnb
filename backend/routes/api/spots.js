@@ -294,6 +294,8 @@ router.get('/', async (req, res, next) => {
       offset: (page - 1) * size,
     });
 
+    console.log(spots)
+
     // If no spots are found, return a message
     if (spots.length === 0) {
       return res.json({ message: "No spots found." });
