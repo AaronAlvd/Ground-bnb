@@ -299,6 +299,10 @@ router.get('/', async (req, res, next) => {
       return res.json({ message: "No spots found." });
     }
 
+    if (spots.avgStarRating === null) {
+      spots.avgStarRating = 0.00
+    }
+
     // Format the response for each spot
     const formattedSpots = {
       Spots: spots.map(spot => {
