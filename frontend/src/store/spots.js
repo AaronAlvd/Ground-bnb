@@ -42,7 +42,7 @@ export const getSpots = () => {
             price: data.spot.price,
             createdAt: data.spot.createdAt,
             updatedAt: data.spot.updatedAt,
-            avgRating: data.spot.avgStarRating,
+            avgRating: data.spot.avgStarRating ? data.spot.avgStarRating : null,
             spotImages: data.spot.SpotImages
           };
         })
