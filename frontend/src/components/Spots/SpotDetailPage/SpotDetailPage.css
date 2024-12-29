@@ -125,8 +125,9 @@
 }
 
 .div-spotReserve {
-  width: auto;
-  border: 2px solid black;
+  width: min-content;
+  border: 1px solid rgb(124, 124, 124);
+  box-shadow: 2px 2px 5px rgb(220, 220, 220);
   border-radius: 10px;
   padding: 15px;
   height: auto;
@@ -178,19 +179,35 @@
 .LB-Reviews {
  font-size: 20px;
 }
-
 .spotRating-divider {
   margin: 0 10px 0 0px;
   width: 2px;
   height: 20px;
   background-color: black;
 }
-
 .centered-DOT {
   font-size: 30px;
   margin: 5px;
 }
-
+.SpotDetailPage-div-reserveCalender{
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid rgb(171, 171, 171);
+  border-radius: 5px;
+}
+.SpotDetailPage-div-date{
+  width: 100px;
+  font-size: 15px;
+  height: min-content;
+  text-align: start;
+  font-weight: 800;
+  padding: 10px;
+}
+.SpotDetailPage-p-date{
+  font-size: 18px;
+  font-weight: 400;
+  margin: 5px 0 0 0;
+}
 /* ---- SPOT BODY ---- */
 
 

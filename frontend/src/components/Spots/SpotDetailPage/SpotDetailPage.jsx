@@ -13,6 +13,8 @@ import "./SpotDetailPage.css";
 
 
 function SpotDetailPage() {
+  const todaysDate = new Date().toLocaleDateString('en-US');
+  const formattedDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US');
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spots = useSelector((state) => state.spots.spots);
@@ -89,8 +91,16 @@ function SpotDetailPage() {
                   </div>
 
                   <div className="SpotDetailPage-div-reserveCalender">
-                    <OpenModalButton buttonText="Reserve" modalComponent={<ReserveCalendar />}/>
+                    <div className="SpotDetailPage-div-date" style={{borderRight: '2px solid rgb(171,171,171)'}}>
+                      <OpenModalButton buttonText="Check-In" modalComponent={<ReserveCalendar />}/>
+                      <p className="SpotDetailPage-p-date"><OpenModalButton buttonText={todaysDate} modalComponent={<ReserveCalendar />}/></p>
+                    </div>
+                    <div className="SpotDetailPage-div-date"> 
+                      <OpenModalButton buttonText="Check-Out" butmodalComponent={<ReserveCalendar />}/>
+                      <p className="SpotDetailPage-p-date"><OpenModalButton buttonText={formattedDate} modalComponent={<ReserveCalendar />}/></p>
+                    </div>
                   </div>
+                  <button>Reserve</button>
               </div>
               <div className="div-SD-buttons">
                 {showReview && <button className="SD-Button">
