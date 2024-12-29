@@ -20,6 +20,8 @@ function SpotsDisplayPage() {
     navigate(`/spots/${spotId}`);
   }
 
+  if (!spots) return null
+
   return (
     <div className="SDP-div">
       {spots.map((spot) => {
