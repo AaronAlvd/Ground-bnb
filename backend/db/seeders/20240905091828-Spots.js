@@ -87,8 +87,7 @@ module.exports = {
         lat: 40.712776,
         lng: -74.005974,
         name: "NYC Tech School",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-`,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 800,
       },
       {
@@ -101,9 +100,7 @@ module.exports = {
         lat: 41.878113,
         lng: -87.629799,
         name: "Chicago Coding Institute",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-                      technology and beyond. Nestled in a vibrant academic community, our campus offers state-of-the-art facilities and 
-                      `,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 450,
       },
       {
@@ -116,9 +113,7 @@ module.exports = {
         lat: 42.360081,
         lng: -71.058884,
         name: "Boston Engineering Academy",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
- From pioneering research labs pushing 
-                      `,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 600,
       },
       {
@@ -131,8 +126,7 @@ module.exports = {
         lat: 39.739236,
         lng: -104.990251,
         name: "Data Science School",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-`,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 700,
       },
       {
@@ -145,8 +139,7 @@ module.exports = {
         lat: 25.7617,
         lng: -80.1918,
         name: "Cloud Computing Academy",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-`,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 750,
       },
       {
@@ -159,8 +152,7 @@ module.exports = {
         lat: 33.7490,
         lng: -84.3880,
         name: "AI Development Institute",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
- `,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 900,
       },
       {
@@ -173,8 +165,7 @@ module.exports = {
         lat: 38.9072,
         lng: -77.0369,
         name: "Cybersecurity Academy",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-`,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 850,
       },
       {
@@ -187,8 +178,7 @@ module.exports = {
         lat: 34.0522,
         lng: -118.2437,
         name: "Game Development School",
-        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in 
-`,
+        description: `Our university stands at the forefront of innovation, dedicated to empowering the next generation of leaders in`,
         price: 999,
       },
       {
@@ -201,9 +191,7 @@ module.exports = {
         lat: 48.804864,
         lng: 2.120355,
         name: "Palace of Versailles",
-        description: `The Palace of Versailles is a stunning royal residence that epitomizes the opulence and grandeur of the French monarchy. 
-                      Surrounded by beautifully manicured gardens, the palace showcases exquisite architecture and art, attracting millions 
-                      of visitors each year eager to explore its rich history and remarkable beauty.`,
+        description: `The Palace of Versailles is a stunning royal residence that epitomizes the opulence and grandeur of the French monarchy.`,
         price: 3100, // This can be set according to your rental purposes (usually not rented out)
       }
     ]);
