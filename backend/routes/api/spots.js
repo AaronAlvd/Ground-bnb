@@ -312,6 +312,7 @@ router.get('/', async (req, res, next) => {
       size
     };
 
+    console.log(formattedSpots)
     // Return the formatted spots in the response
     res.json(formattedSpots);
   } catch (error) {
