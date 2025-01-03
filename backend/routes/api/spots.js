@@ -161,7 +161,7 @@ router.get('/:spotId', async (req, res, next) => {
         'id',
         ['userId', 'ownerId'], // Rename userId to ownerId
         'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt',
-        [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating'],
+        [sequelize.fn('ROUND',sequelize.fn('AVG', sequelize.col('Reviews.stars')), 2), 'avgStarRating'],
         [sequelize.fn('COUNT', sequelize.col('Reviews.id')), 'numReviews'],
       ],
       include: [
@@ -276,7 +276,7 @@ router.get('/', async (req, res, next) => {
       where: filterConditions,
       attributes: [
         'id', 'userId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt',
-        [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
+        [sequelize.fn('ROUND',sequelize.fn('AVG', sequelize.col('Reviews.stars')), 2), 'avgStarRating']
       ],
       include: [
         {
@@ -299,10 +299,6 @@ router.get('/', async (req, res, next) => {
       return res.json({ message: "No spots found." });
     }
 
-    if (spots.avgStarRating === null) {
-      spots.avgStarRating = 0.00
-    }
-
     // Format the response for each spot
     const formattedSpots = {
       Spots: spots.map(spot => {
@@ -311,8 +307,6 @@ router.get('/', async (req, res, next) => {
       page,
       size
     };
-
-    console.log(formattedSpots)
     // Return the formatted spots in the response
     res.json(formattedSpots);
   } catch (error) {
