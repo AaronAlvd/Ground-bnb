@@ -25,9 +25,9 @@ export const getSpots = () => {
     // Return a function that takes dispatch as an argument
     try {
       const response = await csrfFetch("/api/spots/");
+      console.log(response)
       if (response.ok) {
         const data = await response.json();
-        // console.log(data)
         const formattedSpots = data.Spots.map((data) => {
           return {
             id: data.spot.id,
