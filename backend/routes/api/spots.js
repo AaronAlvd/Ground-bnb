@@ -301,12 +301,12 @@ router.get('/', async (req, res, next) => {
 
     // Format the response for each spot
     const formattedSpots = {
-      Spots: [...spots],
+      Spots: spots.map(spot => spot),
       page,
       size
     };
     // Return the formatted spots in the response
-    res.json(spots);
+    res.json(formattedSpots);
   } catch (error) {
     next(error); // Pass errors to the error-handling middleware
   }
