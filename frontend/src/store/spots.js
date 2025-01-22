@@ -25,26 +25,26 @@ export const getSpots = () => {
     // Return a function that takes dispatch as an argument
     try {
       const response = await csrfFetch("/api/spots/");
-      console.log(response)
       if (response.ok) {
         const data = await response.json();
-        const formattedSpots = data.Spots.map((data) => {
+        const formattedSpots = data.Spots.map((spot) => {
+          console.log();
           return {
-            id: data.spot.id,
-            ownerId: data.spot.userId,
-            address: data.spot.address,
-            city: data.spot.city,
-            state: data.spot.state,
-            country: data.spot.country,
-            lat: data.spot.lat,
-            lng: data.spot.lng,
-            name: data.spot.name,
-            description: data.spot.description,
-            price: data.spot.price,
-            createdAt: data.spot.createdAt,
-            updatedAt: data.spot.updatedAt,
-            avgRating: data.spot.avgStarRating,
-            spotImages: data.spot.SpotImages,
+            id: spot.id,
+            ownerId: spot.userId,
+            address: spot.address,
+            city: spot.city,
+            state: spot.state,
+            country: spot.country,
+            lat: spot.lat,
+            lng: spot.lng,
+            name: spot.name,
+            description: spot.description,
+            price: spot.price,
+            createdAt: spot.createdAt,
+            updatedAt: spot.updatedAt,
+            avgRating: spot.avgStarRating,
+            spotImages: spot.SpotImages,
           };
         })
         dispatch(setSpots(formattedSpots)); // Dispatch the action with the fetched spots
