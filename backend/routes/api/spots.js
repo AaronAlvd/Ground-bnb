@@ -276,7 +276,7 @@ router.get('/', async (req, res, next) => {
       where: filterConditions,
       attributes: [
         'id', 'userId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt',
-        [sequelize.fn('ROUND',sequelize.fn('AVG', sequelize.col('Reviews.stars')), 2), 'avgStarRating']
+        [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
       ],
       include: [
         {
