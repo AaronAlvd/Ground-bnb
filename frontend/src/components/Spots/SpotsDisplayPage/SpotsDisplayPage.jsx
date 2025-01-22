@@ -42,7 +42,7 @@ function SpotsDisplayPage() {
             <img className="SDP-img" src={previewImage()}/>
             <div className="SDP-div-SpotBody">
               <div className="SDA-Location"><p className="SDA-info-p">{spot.city}, {spot.state}</p>  
-                {spot.avgRating ? <p className="SDA-info-p"><FontAwesomeIcon className="SDA-icon"icon={faStar}/>{spot.avgRating}</p>:
+                {spot.avgRating && spot.avgRating > 0 ? <p className="SDA-info-p"><FontAwesomeIcon className="SDA-icon"icon={faStar}/>{spot.avgRating.toFixed(2)}</p>:
                                   <p className="SDA-info-p"><FontAwesomeIcon className="SDA-icon"icon={faStar}/>New</p>}
               </div>
             
