@@ -27,23 +27,23 @@ export const getSpots = () => {
       const response = await csrfFetch("/api/spots/");
       if (response.ok) {
         const data = await response.json();
-        const formattedSpots = data.Spots.map((spot) => {
+        const formattedSpots = data.Spots.map((data2) => {
           return {
-            id: spot.id,
-            ownerId: spot.userId,
-            address: spot.address,
-            city: spot.city,
-            state: spot.state,
-            country: spot.country,
-            lat: spot.lat,
-            lng: spot.lng,
-            name: spot.name,
-            description: spot.description,
-            price: spot.price,
-            createdAt: spot.createdAt,
-            updatedAt: spot.updatedAt,
-            avgRating: spot.avgStarRating,
-            spotImages: spot.SpotImages,
+            id: data2.spot.id,
+            ownerId: data2.spot.userId,
+            address: data2.spot.address,
+            city: data2.spot.city,
+            state: data2.spot.state,
+            country: data2.spot.country,
+            lat: data2.spot.lat,
+            lng: data2.spot.lng,
+            name: data2.spot.name,
+            description: data2.spot.description,
+            price: data2.spot.price,
+            createdAt: data2.spot.createdAt,
+            updatedAt: data2.spot.updatedAt,
+            avgRating: data2.spot.avgStarRating,
+            spotImages: data2.spot.SpotImages,
           };
         })
         dispatch(setSpots(formattedSpots)); // Dispatch the action with the fetched spots
