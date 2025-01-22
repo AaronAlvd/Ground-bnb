@@ -1,12 +1,12 @@
-# Airbnb Clone
+# GroundBnb - Airbnb Clone
 
-Welcome to the **Airbnb Clone** project! This application allows users to browse, book, and review spots similar to the real Airbnb platform. The project includes full CRUD (Create, Read, Update, Delete) functionality for spots, users, and reviews.
+Welcome to **GroundBnb**, a clone of the Airbnb platform! This web application allows users to browse, book, and review spots, with full **CRUD** (Create, Read, Update, Delete) functionality for spots, users, and reviews.
 
 ## Features
 
 - **User Management:**
   - Register and login to the platform.
-  - View and edit user profile.
+  - View and edit user profiles.
   
 - **Spot Management:**
   - Create, read, update, and delete spots.
@@ -15,21 +15,25 @@ Welcome to the **Airbnb Clone** project! This application allows users to browse
 - **Review System:**
   - Users can create, update, and delete reviews for spots.
   - View all reviews for each spot.
-  
+
 ## Technologies Used
 
 - **Backend:**
   - Node.js
   - Express.js
-  - MongoDB (for data storage)
-  - Mongoose (for MongoDB ORM)
-
-- **Frontend (optional for this repo):**
-  - React.js (if the frontend is part of the repo)
+  - PostgreSQL (relational database)
+  - Sequelize (PostgreSQL ORM)
+  
+- **Frontend:**
+  - React.js
+  - React Router (for routing)
   - Axios (for HTTP requests)
 
 - **Authentication:**
-  - JWT (JSON Web Token) for secure user authentication
+  - JWT (JSON Web Token) for user authentication
+
+- **Deployment:**
+  - Render (for cloud hosting and deployment)
 
 ## API Endpoints
 
@@ -57,10 +61,12 @@ Welcome to the **Airbnb Clone** project! This application allows users to browse
 ### Prerequisites
 
 - Node.js (>= v14)
-- MongoDB (or use MongoDB Atlas for cloud DB)
+- PostgreSQL (or use a cloud PostgreSQL instance)
+- Sequelize CLI for managing migrations and models
+- npm or yarn for package management
 
 ### Getting Started
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/aaronalvd/airbnb-clone.git
+   git clone https://github.com/aaronalvd/groundbnb.git
