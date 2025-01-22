@@ -111,7 +111,7 @@ function SpotDetailPage() {
           </div>
           <div className="div-lowerBody">
             <div className="div-lowerBodyTitle">
-              {spot.avgRating ? <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>{spot.avgRating.toFixed(2)}</p> : <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>New</p>}
+              {null ? <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>0.00</p> : <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>New</p>}
               {reviews.length !== 0 && <><p className="centered-DOT">•</p><p className="LB-Reviews">{reviews.length } {reviews.length != 1 ? "Reviews" : "Review"}</p></>}
             </div>
             <div className="div-lowerBodyReviews">
