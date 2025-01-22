@@ -301,9 +301,7 @@ router.get('/', async (req, res, next) => {
 
     // Format the response for each spot
     const formattedSpots = {
-      Spots: spots.map(spot => {
-        return { spot }
-      }),
+      Spots: [...spots],
       page,
       size
     };
