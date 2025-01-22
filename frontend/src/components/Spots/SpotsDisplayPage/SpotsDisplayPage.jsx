@@ -20,7 +20,7 @@ function SpotsDisplayPage() {
     navigate(`/spots/${spotId}`);
   }
 
-  if (!spots) return null
+  if (!spots) return <h1>Loading...</h1>
 
   return (
     <div className="SDP-div">
