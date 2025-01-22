@@ -20,7 +20,7 @@ export default function DetailPagePhotos({spotImages = []}) {
           const binaryString = Array.from(byteArray)
             .map(byte => String.fromCharCode(byte))
             .join('');
-          return <img className="sideImage"src={`data:image/jpeg;base64,${btoa(binaryString)}`}/> // Ensure you use the correct MIME type
+          return <img className="sideImage"src={`data:image/jpeg;base64,${btoa(binaryString)}`} /> // Ensure you use the correct MIME type
         }
       })}
       </div>

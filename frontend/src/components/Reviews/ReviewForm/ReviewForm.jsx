@@ -1,6 +1,6 @@
 import "./ReviewForm.css";
 import StarRating from "../StarRating";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { createReview } from "../../../store/review";
 

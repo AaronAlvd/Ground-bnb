@@ -12,7 +12,7 @@ function DeleteReviewConfirm({ reviewId }) {
         throw new Error('Failed to delete review')
       }
 
-      const data = await response.json();
+      // const data = await response.json();
       window.location.reload();
 
     } catch(err) {

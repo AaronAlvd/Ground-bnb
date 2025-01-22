@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 const SET_SPOTS = "spots/setSpots";
 const ADD_SPOT = "spots/addSpot";
 const DELETE_SPOT = "spots/deleteSpot";
-const SPOT_IMAGES = "spots/getImages";
+// const SPOT_IMAGES = "spots/getImages";
 
 const setSpots = (spots) => {
   return {
@@ -25,7 +25,6 @@ export const getSpots = () => {
     // Return a function that takes dispatch as an argument
     try {
       const response = await csrfFetch("/api/spots/");
-      console.log('hello');
       if (response.ok) {
         const data = await response.json();
         const formattedSpots = data.Spots.map((spot) => {

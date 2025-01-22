@@ -82,7 +82,7 @@ function SpotDetailPage() {
 
                   <div className="div-SRT-right">
                       {spot.avgRating ? ( <p className="spotReserve"> 
-                        <FontAwesomeIcon className="SD-icon" icon={faStar}/>{spot.avgRating}</p>) : 
+                        <FontAwesomeIcon className="SD-icon" icon={faStar}/>{spot.avgRating.toFixed(2)}</p>) : 
                         (<p className="spotReserve"> New <FontAwesomeIcon className="SD-icon" icon={faStar} /></p>)}
                           {reviews.length !== 0 && (<> <p className="centered-DOT">•</p> <p className="spotReserve">
                           {reviews.length} {reviews.length !== 1 ? "Reviews" : "Review"}</p></>
@@ -111,7 +111,7 @@ function SpotDetailPage() {
           </div>
           <div className="div-lowerBody">
             <div className="div-lowerBodyTitle">
-              {spot.avgRating ? <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>{spot.avgRating}</p> : <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>New</p>}
+              {spot.avgRating ? <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>{spot.avgRating.toFixed(2)}</p> : <p className="LB-Reviews"><FontAwesomeIcon className="SD-icon"icon={faStar}/>New</p>}
               {reviews.length !== 0 && <><p className="centered-DOT">•</p><p className="LB-Reviews">{reviews.length } {reviews.length != 1 ? "Reviews" : "Review"}</p></>}
             </div>
             <div className="div-lowerBodyReviews">
