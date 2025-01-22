@@ -306,7 +306,7 @@ router.get('/', async (req, res, next) => {
       size
     };
     // Return the formatted spots in the response
-    res.json(formattedSpots);
+    res.json(spots);
   } catch (error) {
     next(error); // Pass errors to the error-handling middleware
   }
