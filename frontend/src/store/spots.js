@@ -28,7 +28,7 @@ export const getSpots = () => {
       if (response.ok) {
         const data = await response.json();
         const formattedSpots = data.Spots.map((spot) => {
-          console.log();
+          console.log(spot);
           return {
             id: spot.id,
             ownerId: spot.userId,
