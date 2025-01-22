@@ -45,7 +45,6 @@ function SpotsDisplayPage() {
                 {spot.avgRating ? <p className="SDA-info-p"><FontAwesomeIcon className="SDA-icon"icon={faStar}/>{spot.avgRating}</p>:
                                   <p className="SDA-info-p"><FontAwesomeIcon className="SDA-icon"icon={faStar}/>New</p>}
               </div>
-              {console.log(spot.avgRating)}
               <div className="SDA-Price">
                 <p className="SDA-info-p">${spot.price}<small className="SDA-priceNight">/night</small></p>
               </div>

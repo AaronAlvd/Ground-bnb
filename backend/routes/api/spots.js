@@ -276,7 +276,7 @@ router.get('/', async (req, res, next) => {
       where: filterConditions,
       attributes: [
         'id', 'userId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt',
-        [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
+        [sequelize.fn('ROUND',sequelize.fn('AVG', sequelize.col('Reviews.stars')), 2), 'avgStarRating']
       ],
       include: [
         {
@@ -302,7 +302,8 @@ router.get('/', async (req, res, next) => {
     // Format the response for each spot
     const formattedSpots = {
       Spots: spots.map(spot => {
-        return { spot }}),
+        return { spot }
+      }),
       page,
       size
     };
