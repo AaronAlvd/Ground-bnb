@@ -4,6 +4,8 @@ Welcome to **GroundBnb**, a clone of the Airbnb platform! This web application a
 
 [GroundBnb](https://ground-bnb-n5l7.onrender.com/)
 
+![Web App Screenshot](./frontend//public/GroundBnb.png)
+
 ## Features
 
 - **User Management:**
