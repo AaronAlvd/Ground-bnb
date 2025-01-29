@@ -2,6 +2,8 @@
 
 Welcome to **GroundBnb**, a clone of the Airbnb platform! This web application allows users to browse, book, and review spots, with full **CRUD** (Create, Read, Update, Delete) functionality for spots, users, and reviews.
 
+[GroundBnb](https://ground-bnb-n5l7.onrender.com/)
+
 ## Features
 
 - **User Management:**
